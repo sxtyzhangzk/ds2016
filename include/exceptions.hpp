@@ -8,7 +8,7 @@
 namespace sjtu {
 
 class exception {
-private:
+protected:
 	const std::string variant = "";
 	std::string detail = "";
 public:
@@ -21,10 +21,17 @@ public:
 
 /**
  * TODO
- * a class for the exception of invaild index action.
- * Please complete it.
+ * Please complete them.
  */
 class index_out_of_bound : public exception {
+	/* __________________________ */
+};
+
+class runtime_error : public exception {
+	/* __________________________ */
+};
+
+class invaild_iterator : public exception {
 	/* __________________________ */
 };
 

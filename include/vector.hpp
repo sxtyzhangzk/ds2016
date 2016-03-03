@@ -5,13 +5,17 @@
 #include <cstddef>
 
 namespace sjtu{
-
+/**
+ * a data container like std::vector
+ * store data in a successive memory and support random access.
+ */
 template<typename T>
 class vector {
 public:
 	/**
 	 * TODO
-	 * a type for actions of the elements of a vector.
+	 * a type for actions of the elements of a vector, and you should write
+	 *   a class named const_iterator with same interfaces.
 	 */
 	class iterator {
 	private:
@@ -62,6 +66,12 @@ public:
 		T& operator*() const{}
 	};
 	/**
+	 * TODO
+	 */
+	class const_iterator {
+
+	};
+	/**
 	 * TODO Constructs
 	 * Atleast three: default constructor, copy constructor and a constructor for std::vector
 	 */
@@ -77,7 +87,7 @@ public:
 	vector& operator=(const vector<T> &x) {}
 	/**
 	 * TODO Appends the specified element to the end of this list.
-	 * throw exception (you should define it in exceptions)if failed.
+	 * throw runtime_error if failed.
 	 */
 	void push_back(const T &e) {}
 	/**
@@ -98,20 +108,43 @@ public:
 	 */
 	void clear() {}
 	/**
-     * TODO Returns the index if this list contains the specified element,
-     *   Otherwise returns INT_MAX
-     */
-    size_t find(const T& e) const {}
-    /**
-     * TODO Returns true if this list contains no elements.
-     */
-    bool empty() const {}
-    /**
-     * TODO Returns a const reference to the element at the specified position in this list.
-     * The index is zero-based, with range [0, size).
-     * @throw IndexOutOfBound
-     */
-    const T& at(size_t index) const {}
+	 * TODO Returns the index if this list contains the specified element,
+	 *   Otherwise returns INT_MAX
+	 */
+	size_t find(const T& e) const {}
+	/**
+	 * TODO Returns true if this list contains no elements.
+	 */
+	bool empty() const {}
+	/**
+	 * TODO Returns a const reference to the element at the specified position in this list.
+	 * The index is zero-based, with range [0, size).
+	 * @throw IndexOutOfBound
+	 */
+	T& at(const size_t &index) {}
+	const T& at(const size_t &index) const {}
+	/**
+	 * TODO Remove a element at index ind, i.e., a[ind] = a[ind + 1], a[ind + 1] = a[ind + 2],...
+	 */
+	void erase(const size_t &ind) {}
+	/**
+	 * TODO Remove the element which the iterator point to
+	 * throw invaild_iterator if the iterator points to a invaild place.
+	 */
+	void erase(const iterator &it) {}
+	/**
+	 * some functions
+	 * It should have the same meanings as STL
+	 */
+	iterator begin() {}
+	iterator end() {}
+	const_iterator begin() const {}
+	const_iterator end() const {}
+	/**
+	 * TODO 
+	 */
+	T& operator[](const size_t &index) {}
+	const T& operator[](const size_t &index) const {}
 };
 
 
