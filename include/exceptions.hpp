@@ -35,6 +35,9 @@ class invaild_iterator : public exception {
 	/* __________________________ */
 };
 
+class container_is_empty : public exception {
+	/* __________________________ */
+};
 }
 
 #endif

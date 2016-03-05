@@ -4,7 +4,7 @@
 #include <climits>
 #include <cstddef>
 
-namespace sjtu{
+namespace sjtu {
 /**
  * a data container like std::vector
  * store data in a successive memory and support random access.
@@ -27,7 +27,7 @@ public:
 		/**
 		 * return a new iterator which pointer n-next elements
 		 *   even if there are not enough elements, just return the answer.
-		 * as well as operator- 
+		 * as well as operator-
 		 */
 		iterator operator+(const int &n) {
 			//TODO
@@ -35,6 +35,8 @@ public:
 		iterator operator-(const int &n) {
 			//TODO
 		}
+		// return th distance between two iterator,
+		// if these two iterators points to different vectors, throw invaild_iterator.
 		int operator-(const iterator &rhs) {
 			//TODO
 		}
@@ -61,7 +63,7 @@ public:
 		 */
 		iterator& operator--() {}
 		/**
-		 * TODO *T
+		 * TODO *it
 		 */
 		T& operator*() const{}
 	};
@@ -91,13 +93,11 @@ public:
 	 */
 	void push_back(const T &e) {}
 	/**
-	 * TODO Appends n specified elements to the end.
-	 * @param e specified elements
-	 * @param n the number you should append
+	 * TODO delete the last element in the vector.
 	 */
-	void push_back(const T &e, const size_t &n) {}
+	void pop_back() {}
 	/**
-	 * TODO insert an element and the element inserted will 
+	 * TODO insert an element and the element inserted will
 	 *   become the index-th element after inserting.
 	 * the index is zero-basec, with range [0, size]
 	 * throw if index is invalid
@@ -141,7 +141,7 @@ public:
 	const_iterator begin() const {}
 	const_iterator end() const {}
 	/**
-	 * TODO 
+	 * TODO
 	 */
 	T& operator[](const size_t &index) {}
 	const T& operator[](const size_t &index) const {}
