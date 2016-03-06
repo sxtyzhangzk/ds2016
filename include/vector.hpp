@@ -17,6 +17,7 @@ public:
 	 * a type for actions of the elements of a vector, and you should write
 	 *   a class named const_iterator with same interfaces.
 	 */
+	class const_iterator;
 	class iterator {
 	private:
 		/**
@@ -66,6 +67,11 @@ public:
 		 * TODO *it
 		 */
 		T& operator*() const{}
+		/**
+		 * a operator to check whether two iterators are same.
+		 */
+		bool operator==(const iterator &rhs) {}
+		bool operator==(const const_iterator &rhs) {}
 	};
 	/**
 	 * TODO
