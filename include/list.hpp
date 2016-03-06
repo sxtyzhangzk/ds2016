@@ -7,7 +7,13 @@ namespace sjtu {
 
 template<typename T>
 class list {
+	class iterator {
 
+	};
+	class const_iterator {
+
+	};
+public:
 };
 
 }
