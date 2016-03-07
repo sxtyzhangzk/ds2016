@@ -30,6 +30,7 @@ public:
 	/**
 	 * TODO
 	 * delete the first element.
+	 * throw container_is_empty if empty() returns true;
 	 */
 	void pop() {
 

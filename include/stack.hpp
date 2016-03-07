@@ -32,6 +32,7 @@ public:
 	/**
 	 * TODO
 	 * delete the top element.
+	 * throw container_is_empty if empty() returns true;
 	 */
 	void pop() {
 
