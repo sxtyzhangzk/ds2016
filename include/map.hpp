@@ -30,8 +30,9 @@ template<
 
 	};
 	/**
-	 * see BidirectionalIterator for help.
+	 * see BidirectionalIterator at CppReference for help.
 	 */
+	class const_iterator;
 	class iterator {
 	private:
 		/**
@@ -61,9 +62,11 @@ template<
 		 */
 		iterator& operator--() {}
 		/**
-		 * TODO *it
+		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
 		T& operator*() const{}
+		bool operator==(const iterator &rhs) {}
+		bool operator==(const const_iterator &rhs) {}
 	};
 	class const_iterator {
 
@@ -74,6 +77,10 @@ public:
 	 */
 	map() {}
 	map(const map<Key, T, Compare> &other) {}
+	/**
+	 * TODO Destructors
+	 */
+	~map() {}
 	/**
 	 * TODO
 	 * access specified element with bounds checking

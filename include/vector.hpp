@@ -17,6 +17,9 @@ public:
 	 * a type for actions of the elements of a vector, and you should write
 	 *   a class named const_iterator with same interfaces.
 	 */
+	/**
+	 * you can see RandomAccessIterator at CppReference for help.
+	 */
 	class const_iterator;
 	class iterator {
 	private:
@@ -68,13 +71,14 @@ public:
 		 */
 		T& operator*() const{}
 		/**
-		 * a operator to check whether two iterators are same.
+		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
 		bool operator==(const iterator &rhs) {}
 		bool operator==(const const_iterator &rhs) {}
 	};
 	/**
 	 * TODO
+	 * has same function as iterator, just for a const object.
 	 */
 	class const_iterator {
 
@@ -84,73 +88,97 @@ public:
 	 * Atleast three: default constructor, copy constructor and a constructor for std::vector
 	 */
 	vector() {}
+	vector(const vector<T> &other) {}
 	/**
 	 * TODO Destructor
 	 */
 	~vector() {}
-
 	/**
 	 * TODO Assignment operator
 	 */
-	vector& operator=(const vector<T> &x) {}
+	vector& operator=(const vector<T> &other) {}
 	/**
-	 * TODO Appends the specified element to the end of this list.
-	 * throw runtime_error if failed.
+	 * assigns specified element with bounds checking
+	 * throw index_out_of_bound if pos is not in [0, size)
 	 */
-	void push_back(const T &e) {}
+	T & at(const size_t &pos) {}
+	const T & at(const size_t &pos) const {}
 	/**
-	 * TODO delete the last element in the vector.
+	 * assigns specified element with bounds checking
+	 * throw index_out_of_bound if pos is not in [0, size)
+	 * !!! Pay attentions
+	 *   In STL this operator does not check the boundary but I want you to do.
 	 */
-	void pop_back() {}
+	T & operator[](const size_t &pos) {}
+	const T & operator[](const size_t &pos) const {}
 	/**
-	 * TODO insert an element and the element inserted will
-	 *   become the index-th element after inserting.
-	 * the index is zero-basec, with range [0, size]
-	 * throw if index is invalid
+	 * access the first element.
+	 * throw container_is_empty if size == 0
 	 */
-	void insert(size_t index, const T &e) {}
+	const T & front() const {}
 	/**
-	 * TODO Removes all of the elements from this list.
+	 * access the last element.
+	 * throw container_is_empty if size == 0
 	 */
-	void clear() {}
+	const T & back() const {}
 	/**
-	 * TODO Returns the index if this list contains the specified element,
-	 *   Otherwise returns INT_MAX
+	 * returns an iterator to the beginning.
 	 */
-	size_t find(const T& e) const {}
+	iterator begin() {}
+	const_iterator cbegin() const {}
 	/**
-	 * TODO Returns true if this list contains no elements.
+	 * returns an iterator to the end.
+	 */
+	iterator end() {}
+	const_iterator cend() const {}
+	/**
+	 * checks whether the container is empty
 	 */
 	bool empty() const {}
 	/**
-	 * TODO Returns a const reference to the element at the specified position in this list.
-	 * The index is zero-based, with range [0, size).
-	 * @throw IndexOutOfBound
+	 * returns the number of elements
 	 */
-	T& at(const size_t &index) {}
-	const T& at(const size_t &index) const {}
+	size_t size() const {}
 	/**
-	 * TODO Remove a element at index ind, i.e., a[ind] = a[ind + 1], a[ind + 1] = a[ind + 2],...
+	 * returns the number of elements that can be held in currently allocated storage.
 	 */
-	void erase(const size_t &ind) {}
+	size_t capacity() const {}
 	/**
-	 * TODO Remove the element which the iterator point to
-	 * throw invaild_iterator if the iterator points to a invaild place.
+	 * clears the contents
 	 */
-	void erase(const iterator &it) {}
+	void clear() {}
 	/**
-	 * some functions
-	 * It should have the same meanings as STL
+	 * inserts value before pos
+	 * returns an iterator pointing to the inserted value.
 	 */
-	iterator begin() {}
-	iterator end() {}
-	const_iterator begin() const {}
-	const_iterator end() const {}
+	iterator insert(iterator pos, const T &value) {}
 	/**
-	 * TODO
+	 * inserts value at index ind.
+	 * after inserting, this->at(ind) == value is true
+	 * returns an iterator pointing to the inserted value.
+	 * throw index_out_of_bound if ind > size (in this situation ind can be size because after inserting the size will increase 1.)
 	 */
-	T& operator[](const size_t &index) {}
-	const T& operator[](const size_t &index) const {}
+	iterator insert(const size_t &ind, const T &value) {}
+	/**
+	 * removes the element at pos.
+	 * return an iterator pointing to the following element.
+	 * If the iterator pos refers the last element, the end() iterator is returned.
+	 */
+	iterator erase(iterator pos) {}
+	/**
+	 * removes the element with index ind.
+	 * return an iterator pointing to the following element.
+	 * throw index_out_of_bound if ind >= size
+	 */
+	iterator erase(const size_t &ind) {}
+	/**
+	 * adds an element to the end.
+	 */
+	void push_back(const T &value) {}
+	/**
+	 * remove the last element from the end.
+	 */
+	void pop_back() {}
 };
 
 
