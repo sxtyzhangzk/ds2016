@@ -96,7 +96,7 @@ public:
 	/**
 	 * TODO Assignment operator
 	 */
-	vector& operator=(const vector<T> &other) {}
+	vector<T>& operator=(const vector<T> &other) {}
 	/**
 	 * assigns specified element with bounds checking
 	 * throw index_out_of_bound if pos is not in [0, size)

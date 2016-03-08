@@ -78,6 +78,10 @@ public:
 	map() {}
 	map(const map<Key, T, Compare> &other) {}
 	/**
+	 * TODO assignment operator
+	 */
+	map<Key, T, Compare> &operator=(const map<Key, T, Compare> &other) {}
+	/**
 	 * TODO Destructors
 	 */
 	~map() {}
