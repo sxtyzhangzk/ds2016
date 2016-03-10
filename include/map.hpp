@@ -127,10 +127,14 @@ public:
 	/**
 	 * insert an element.
 	 * return a pair, the first of the pair is
-	 *   the iterator to the new element, 
+	 *   the iterator to the new element (or the element that prevented the insertion), 
 	 *   the second one is true if insert successfully, or false.
 	 */
 	pair<iterator, bool> insert(const value_type &value) {}
+	/**
+	 * erase the element at pos.
+	 */
+	void erase(iterator pos) {}
 	/**
 	 * Returns the number of elements with key 
 	 *   that compares equivalent to the specified argument,
@@ -146,7 +150,7 @@ public:
 	 *   If no such element is found, past-the-end (see end()) iterator is returned.
 	 */
 	iterator find(const Key &key) {}
-	const_iterator find(const Key &key) const;
+	const_iterator find(const Key &key) const {}
 };
 
 }
