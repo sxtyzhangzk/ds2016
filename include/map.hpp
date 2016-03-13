@@ -22,6 +22,7 @@ template<
 	class T,
 	class Compare = std::less<Key>
 > class map {
+public:
 	/**
 	 * the internal type of data.
 	 * it should have a default constructor, a copy constructor.
@@ -71,7 +72,6 @@ template<
 	class const_iterator {
 
 	};
-public:
 	/**
 	 * TODO two constructors
 	 */

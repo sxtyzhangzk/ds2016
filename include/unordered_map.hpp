@@ -13,6 +13,7 @@ template<
 	class Hash = std::hash<Key>,
 	class KeyEqual = std::equal_to<Key>
 > class unordered_map {
+public:
 	/**
 	 * the internal type of data.
 	 * it should have a default constructor, a copy constructor.
@@ -103,7 +104,6 @@ template<
 	class const_local_iterator {
 
 	};
-public:
 	/**
 	 * TODO Constructor
 	 */

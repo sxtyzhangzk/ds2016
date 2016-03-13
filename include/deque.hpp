@@ -7,6 +7,7 @@ namespace sjtu {
 
 template<class T>
 class deque {
+public:
 	class const_iterator;
 	class iterator {
 	private:
@@ -63,7 +64,6 @@ class deque {
 		bool operator==(const iterator &rhs) {}
 		bool operator==(const const_iterator &rhs) {}
 	};
-public:
 	/**
 	 * TODO Constructors
 	 */
