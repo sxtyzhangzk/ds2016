@@ -7,6 +7,7 @@ namespace sjtu {
 
 template<typename T>
 class list {
+public:
 	/**
 	 * see BidirectionalIterator at CppReference for help.
 	 */
@@ -49,7 +50,6 @@ class list {
 	class const_iterator {
 
 	};
-public:
 	/**
 	 * TODO
 	 * Constructors at least a default constructor and a copy constructor
