@@ -177,6 +177,7 @@ public:
 	void push_back(const T &value) {}
 	/**
 	 * remove the last element from the end.
+	 * throw container_is_empty if size() == 0
 	 */
 	void pop_back() {}
 };
