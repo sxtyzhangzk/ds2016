@@ -66,7 +66,35 @@ void TestAccessingMethod()
 
 void TestPush_Pop()
 {
+	std::cout << "Testing push_back and pop_back..." << std::endl;
+	std::vector<double> vd;
+	for (double i = 0.0; i < 10.0; i += 1.0) {
+		vd.push_back(i);
+	}
+	std::cout << vd.back() << std::endl;
+	for (double i = 20.0; i < 23.0; i += 1.0) {
+		vd.push_back(i);
+	}
+	std::cout << vd.back() << std::endl;
+	vd.pop_back();
+	std::cout << vd.back() << std::endl;
+	vd.pop_back();
+	std::cout << vd.back() << std::endl;
+	for (int i = 0; i < 5; ++i) {
+		vd.pop_back();
+	}
+	std::cout << vd.back() << std::endl;
+}
 
+void TestInsert()
+{
+	std::cout << "Testing insert functions" << std::endl;
+
+}
+
+void TestErase()
+{
+	std::cout << "Testing erase functions" << std::endl;
 }
 
 int main(int argc, char const *argv[])
@@ -75,5 +103,7 @@ int main(int argc, char const *argv[])
 	TestIterators();
 	TestAccessingMethod();
 	TestPush_Pop();
+	TestInsert();
+	TestErase();
 	return 0;
 }
