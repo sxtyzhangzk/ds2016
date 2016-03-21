@@ -15,6 +15,20 @@ template<typename T, typename ListType = vector<T>>
 class stack {
 public:
 	/**
+	 * TODO constructors
+	 */
+	stack() {}
+	stack(const stack<T, ListType> &other) {}
+	/**
+	 * TODO deconstructor
+	 */
+	~stack() {}
+	/**
+	 * TODO Assignment operator
+	 */
+	stack<T, ListType> &operator=(const stack<T, ListType> &other) {}
+	
+	/**
 	 * get the top of the stack.
 	 * @return a reference of the top element.
 	 * throw container_is_empty when empty() returns true.

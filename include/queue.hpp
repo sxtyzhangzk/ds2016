@@ -13,6 +13,20 @@ template<typename T>
 class queue {
 public:
 	/**
+	 * TODO constructors
+	 */
+	queue() {}
+	queue(const queue<T> &other) {}
+	/**
+	 * TODO deconstructor
+	 */
+	~queue() {}
+	/**
+	 * TODO Assignment operator
+	 */
+	queue<T> &operator=(const queue<T> &other) {}
+	
+	/**
 	 * get the first of the queue.
 	 * @return a reference of the first element.
 	 * throw container_is_empty if empty() returns true;
