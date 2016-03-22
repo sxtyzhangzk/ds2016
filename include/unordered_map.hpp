@@ -59,6 +59,11 @@ public:
 		T& operator*() const{}
 		bool operator==(const iterator &rhs) {}
 		bool operator==(const const_iterator &rhs) {}
+		/**
+		 * some other operator for iterator.
+		 */
+		bool operator!=(const iterator &rhs) {}
+		bool operator!=(const const_iterator &rhs) {}
 	};
 	class const_iterator {
 
@@ -99,7 +104,12 @@ public:
 		 */
 		T& operator*() const{}
 		bool operator==(const iterator &rhs) {}
-		bool operator==(const const_iterator &rhs) {}	
+		bool operator==(const const_iterator &rhs) {}
+		/**
+		 * some other operator for iterator.
+		 */
+		bool operator!=(const iterator &rhs) {}
+		bool operator!=(const const_iterator &rhs) {}
 	};
 	class const_local_iterator {
 

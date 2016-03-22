@@ -1,3 +1,5 @@
+#include "../../include/vector.hpp"
+
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -5,16 +7,16 @@
 void TestConstructor()
 {
 	std::cout << "Testing constructors and assignment operator..." << std::endl;
-	std::vector<int> v;
+	sjtu::vector<int> v;
 	for (int i = 1; i <= 10; ++i) {
 		v.push_back(i);
 	}
-	const std::vector<int> vc(v);
+	const sjtu::vector<int> vc(v);
 	for (size_t i = 0; i < vc.size(); ++i) {
 		std::cout << vc[i] << " ";
 	}
 	std::cout << std::endl;
-	std::vector<int> vv;
+	sjtu::vector<int> vv;
 	for (int i = 0; i < 10; ++i) {
 		vv.push_back(i);
 	}
@@ -32,16 +34,16 @@ void TestConstructor()
 void TestIterators()
 {
 	std::cout << "Testing iterators..." << std::endl; 
-	std::vector<int> v;
+	sjtu::vector<int> v;
 	for (int i = 1; i <= 20; ++i) {
 		v.push_back(i);
 	}
-	for (std::vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+	for (sjtu::vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
-	const std::vector<int> vc(v);
-	for (std::vector<int>::const_iterator it = vc.cbegin(); it != vc.cend(); ++it) {
+	const sjtu::vector<int> vc(v);
+	for (sjtu::vector<int>::const_iterator it = vc.cbegin(); it != vc.cend(); ++it) {
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
@@ -50,7 +52,7 @@ void TestIterators()
 void TestAccessingMethod()
 {
 	std::cout << "Testing accessing methods..." << std::endl;
-	std::vector<long long> vd;
+	sjtu::vector<long long> vd;
 	for (long long i = 0; i < 50; ++i) {
 		vd.push_back(1LL << i);
 	}
@@ -67,7 +69,7 @@ void TestAccessingMethod()
 void TestPush_Pop()
 {
 	std::cout << "Testing push_back and pop_back..." << std::endl;
-	std::vector<double> vd;
+	sjtu::vector<double> vd;
 	for (double i = 0.0; i < 10.0; i += 1.0) {
 		vd.push_back(i);
 	}
@@ -89,12 +91,33 @@ void TestPush_Pop()
 void TestInsert()
 {
 	std::cout << "Testing insert functions" << std::endl;
-
+	sjtu::vector<int> v;
+	for (int i = 0; i < 10; ++i) {
+		v.push_back(i);
+	}
+	v.insert(v.begin() + 3, 100);
+	v.insert(v.begin() + 5, 200);
+	for (sjtu::vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }
 
 void TestErase()
 {
 	std::cout << "Testing erase functions" << std::endl;
+	sjtu::vector<int> v;
+	for (int i = 0; i < 10; ++i) {
+		v.push_back(i);
+	}
+	v.insert(v.begin() + 3, 100);
+	v.insert(v.begin() + 5, 200);
+	v.erase(v.begin() + 5);
+	v.erase(v.begin() + 3);
+	for (sjtu::vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }
 
 int main(int argc, char const *argv[])

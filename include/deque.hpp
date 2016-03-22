@@ -63,6 +63,11 @@ public:
 		 */
 		bool operator==(const iterator &rhs) {}
 		bool operator==(const const_iterator &rhs) {}
+		/**
+		 * some other operator for iterator.
+		 */
+		bool operator!=(const iterator &rhs) {}
+		bool operator!=(const const_iterator &rhs) {}
 	};
 	/**
 	 * TODO Constructors
