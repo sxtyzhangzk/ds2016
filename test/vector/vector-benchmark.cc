@@ -6,7 +6,7 @@
 
 int main()
 {
-	std::vector<long long> v;
+	sjtu::vector<long long> v;
 	for (long long i = 0; i < 1LL << 20; ++i) {
 		v.push_back(i);
 	}
