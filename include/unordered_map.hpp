@@ -4,6 +4,7 @@
 #include <functional>
 #include <cstddef>
 #include "map.hpp"
+#include "exceptions.hpp"
 
 namespace sjtu {
 

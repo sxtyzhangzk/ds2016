@@ -1,6 +1,8 @@
 #ifndef SJTU_ALGORITHM_HPP
 #define SJTU_ALGORITHM_HPP
 
+#include "exceptions.hpp"
+
 #include "vector.hpp"
 #include "list.hpp"
 

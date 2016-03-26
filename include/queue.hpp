@@ -2,6 +2,7 @@
 #define SJTU_QUEUE_HPP
 
 #include "list.hpp"
+#include "exceptions.hpp"
 
 namespace sjtu {
 

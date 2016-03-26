@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <functional>
+#include "exceptions.hpp"
 
 namespace sjtu {
 
