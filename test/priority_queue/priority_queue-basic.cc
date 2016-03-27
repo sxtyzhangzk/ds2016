@@ -8,7 +8,7 @@
 void TestConstructorAndPush()
 {
 	std::cout << "Testing constructors, destructor and push..." << std::endl;
-	std::priority_queue<int> pq;
+	sjtu::priority_queue<int> pq;
 	for (int i = 100; i > 0; --i) {
 		pq.push(i);
 	}
@@ -20,9 +20,9 @@ void TestConstructorAndPush()
 	for (int i = 1000; i > 100; --i) {
 		pq.push(i);
 	}
-	std::priority_queue<int> pqBack(pq);
+	sjtu::priority_queue<int> pqBack(pq);
 	std::cout << pqBack.size() << std::endl;
-	std::priority_queue<int> pqBB;
+	sjtu::priority_queue<int> pqBB;
 	for (int i = 10; i <= 10000; ++i) {
 		pqBB.push(i);
 	}
@@ -34,7 +34,7 @@ void TestConstructorAndPush()
 void TestSize()
 {
 	std::cout << "Testing size()" << std::endl;
-	std::priority_queue<long long> pq;
+	sjtu::priority_queue<long long> pq;
 	for (int i = 1; i <= 1000; ++i) {
 		pq.push(rand());
 	}
@@ -43,11 +43,8 @@ void TestSize()
 
 void TestException()
 {
-	std::priority_queue<int> pq;
+	sjtu::priority_queue<int> pq;
 	try {
-		if (pq.empty()) {
-			throw 1;
-		}
 		std::cout << pq.top() << std::endl;
 	} catch (...) {
 		std::cout << "Throw correctly." << std::endl;
