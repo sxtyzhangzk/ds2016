@@ -20,7 +20,7 @@ def Prepare(stuName):
 	]
 	for filename in fileList:
 		targetFile = open(dirname + filename, "w")
-		targetFile.write("#include \"submit/%s/%s\"" % (stuName, filename))
+		targetFile.write("#include \"../submit/%s/%s\"" % (stuName, filename))
 		targetFile.close()
 	print("%s: generated the headers." % (stuName))
 
@@ -138,10 +138,8 @@ def TestStudent(stuName):
 	resTimeList = []
 	for test in testList:
 		resList.append(Test(stuPath, stuName, test))
-		MemCheck(stuPath, stuName, test)
 	for test in timeTestList:
 		resTimeList.append(TimeTest(stuPath, stuName, test))
-		MemCheck(stuPath, stuName, test)
 	status = []
 	for res in resList:
 		if res:
