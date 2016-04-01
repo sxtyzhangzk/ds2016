@@ -46,13 +46,13 @@ public:
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
 		T& operator*() const{}
-		bool operator==(const iterator &rhs) {}
-		bool operator==(const const_iterator &rhs) {}
+		bool operator==(const iterator &rhs) const {}
+		bool operator==(const const_iterator &rhs) const {}
 		/**
 		 * some other operator for iterator.
 		 */
-		bool operator!=(const iterator &rhs) {}
-		bool operator!=(const const_iterator &rhs) {}
+		bool operator!=(const iterator &rhs) const {}
+		bool operator!=(const const_iterator &rhs) const {}
 	};
 	class const_iterator {
 

@@ -35,15 +35,15 @@ public:
 		 *   even if there are not enough elements, just return the answer.
 		 * as well as operator-
 		 */
-		iterator operator+(const int &n) {
+		iterator operator+(const int &n) const {
 			//TODO
 		}
-		iterator operator-(const int &n) {
+		iterator operator-(const int &n) const {
 			//TODO
 		}
 		// return th distance between two iterator,
 		// if these two iterators points to different vectors, throw invaild_iterator.
-		int operator-(const iterator &rhs) {
+		int operator-(const iterator &rhs) const {
 			//TODO
 		}
 		iterator operator+=(const int &n) {
@@ -75,13 +75,13 @@ public:
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
-		bool operator==(const iterator &rhs) {}
-		bool operator==(const const_iterator &rhs) {}
+		bool operator==(const iterator &rhs) const {}
+		bool operator==(const const_iterator &rhs) const {}
 		/**
 		 * some other operator for iterator.
 		 */
-		bool operator!=(const iterator &rhs) {}
-		bool operator!=(const const_iterator &rhs) {}
+		bool operator!=(const iterator &rhs) const {}
+		bool operator!=(const const_iterator &rhs) const {}
 	};
 	/**
 	 * TODO
