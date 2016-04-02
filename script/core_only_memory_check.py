@@ -140,32 +140,12 @@ def TestStudent(stuName):
 		MemCheck(stuPath, stuName, test)
 	for test in timeTestList:
 		MemCheck(stuPath, stuName, test)
-	status = []
-	for res in resList:
-		if res:
-			status.append("Pass")
-		else:
-			status.append("Failed")
-	for res in resTimeList:
-		if res:
-			status.append("Pass")
-		else:
-			status.append("failed")
-	return status
 
 try:
 	os.stat("res")
 except:
 	os.mkdir("res")
 
-resCsv = open("test-result.csv", "w")
-
 for line in stuList:
 	stuName = line.strip()
-	status = TestStudent(stuName)
-	resCsv.write(stuName + ',')
-	for res in status:
-		resCsv.write(res + ',')
-	resCsv.write('\n')
 
-resCsv.close()

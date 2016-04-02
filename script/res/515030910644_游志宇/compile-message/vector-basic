@@ -1,0 +1,163 @@
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:172:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc((maxSize) * sizeof(T));
+                          ^
+./testspace/vector-basic.cc:10:20: note: in instantiation of member function 'sjtu::vector<int>::vector' requested here
+        sjtu::vector<int> v;
+                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:185:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arr);
+                ^
+./testspace/vector-basic.cc:10:20: note: in instantiation of member function 'sjtu::vector<int>::~vector' requested here
+        sjtu::vector<int> v;
+                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:164:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc(maxSize * sizeof(T));
+                          ^
+./testspace/../submit/515030910644_游志宇/vector.hpp:262:27: note: in instantiation of member function 'sjtu::vector<int>::DoubleSpace' requested here
+                if (nowSize == maxSize) DoubleSpace();
+                                        ^
+./testspace/vector-basic.cc:12:5: note: in instantiation of member function 'sjtu::vector<int>::push_back' requested here
+                v.push_back(i);
+                  ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:168:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arrs);
+                ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:179:14: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*) malloc(maxSize * sizeof(T));
+                           ^
+./testspace/vector-basic.cc:14:26: note: in instantiation of member function 'sjtu::vector<int>::vector' requested here
+        const sjtu::vector<int> vc(v);
+                                ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:191:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arr);
+                ^
+./testspace/vector-basic.cc:27:5: note: in instantiation of member function 'sjtu::vector<int>::operator=' requested here
+        vv = v;
+           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:192:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc((maxSize) * sizeof(T));
+                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:172:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc((maxSize) * sizeof(T));
+                          ^
+./testspace/vector-basic.cc:55:26: note: in instantiation of member function 'sjtu::vector<long long>::vector' requested here
+        sjtu::vector<long long> vd;
+                                ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:185:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arr);
+                ^
+./testspace/vector-basic.cc:55:26: note: in instantiation of member function 'sjtu::vector<long long>::~vector' requested here
+        sjtu::vector<long long> vd;
+                                ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:164:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc(maxSize * sizeof(T));
+                          ^
+./testspace/../submit/515030910644_游志宇/vector.hpp:262:27: note: in instantiation of member function 'sjtu::vector<long long>::DoubleSpace' requested here
+                if (nowSize == maxSize) DoubleSpace();
+                                        ^
+./testspace/vector-basic.cc:57:6: note: in instantiation of member function 'sjtu::vector<long long>::push_back' requested here
+                vd.push_back(1LL << i);
+                   ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:168:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arrs);
+                ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:172:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc((maxSize) * sizeof(T));
+                          ^
+./testspace/vector-basic.cc:72:23: note: in instantiation of member function 'sjtu::vector<double>::vector' requested here
+        sjtu::vector<double> vd;
+                             ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:185:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arr);
+                ^
+./testspace/vector-basic.cc:72:23: note: in instantiation of member function 'sjtu::vector<double>::~vector' requested here
+        sjtu::vector<double> vd;
+                             ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:164:13: error: call to function 'malloc' that is neither visible in the template definition nor found by argument-dependent lookup
+                arr = (T*)malloc(maxSize * sizeof(T));
+                          ^
+./testspace/../submit/515030910644_游志宇/vector.hpp:262:27: note: in instantiation of member function 'sjtu::vector<double>::DoubleSpace' requested here
+                if (nowSize == maxSize) DoubleSpace();
+                                        ^
+./testspace/vector-basic.cc:74:6: note: in instantiation of member function 'sjtu::vector<double>::push_back' requested here
+                vd.push_back(i);
+                   ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:152:7: note: 'malloc' should be declared prior to the call site
+void    *malloc(size_t);
+         ^
+In file included from ./testspace/vector-basic.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910644_游志宇/vector.hpp:168:3: error: call to function 'free' that is neither visible in the template definition nor found by argument-dependent lookup
+                free(arrs);
+                ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/stdlib.h:143:7: note: 'free' should be declared prior to the call site
+void     free(void *);
+         ^
+15 errors generated.

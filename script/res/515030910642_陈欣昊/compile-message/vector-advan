@@ -1,0 +1,6 @@
+In file included from ./testspace/vector-advan.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910642_陈欣昊/vector.hpp:7:10: fatal error: 'malloc.h' file not found
+#include <malloc.h>
+         ^
+1 error generated.

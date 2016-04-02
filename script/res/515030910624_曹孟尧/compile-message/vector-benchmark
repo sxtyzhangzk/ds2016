@@ -1,0 +1,73 @@
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:80:36: error: 'invaild_iterator' does not refer to a value
+                        if (belong != rhs.belong) throw invaild_iterator;
+                                                        ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:34:7: note: declared here
+class invaild_iterator : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:170:36: error: 'invaild_iterator' does not refer to a value
+                        if (belong != rhs.belong) throw invaild_iterator;
+                                                        ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:34:7: note: declared here
+class invaild_iterator : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:269:14: error: 'index_out_of_bound' does not refer to a value
+                else throw index_out_of_bound;
+                           ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:26:7: note: declared here
+class index_out_of_bound : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:274:14: error: 'index_out_of_bound' does not refer to a value
+                else throw index_out_of_bound;
+                           ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:26:7: note: declared here
+class index_out_of_bound : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:285:14: error: 'index_out_of_bound' does not refer to a value
+                else throw index_out_of_bound;
+                           ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:26:7: note: declared here
+class index_out_of_bound : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:290:14: error: 'index_out_of_bound' does not refer to a value
+                else throw index_out_of_bound;
+                           ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:26:7: note: declared here
+class index_out_of_bound : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:299:25: error: 'container_is_empty' does not refer to a value
+                if (size_ == 0) throw container_is_empty;
+                                      ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:38:7: note: declared here
+class container_is_empty : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:307:25: error: 'container_is_empty' does not refer to a value
+                if (size_ == 0) throw container_is_empty;
+                                      ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:38:7: note: declared here
+class container_is_empty : public exception {
+      ^
+In file included from ./testspace/vector-benchmark.cc:1:
+In file included from ./testspace/vector.hpp:1:
+./testspace/../submit/515030910624_曹孟尧/vector.hpp:416:26: error: 'container_is_empty' does not refer to a value
+                if (size() == 0) throw container_is_empty;
+                                       ^
+./testspace/../submit/515030910624_曹孟尧/exceptions.hpp:38:7: note: declared here
+class container_is_empty : public exception {
+      ^
+9 errors generated.

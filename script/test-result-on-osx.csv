@@ -1,0 +1,22 @@
+姓名学号,basic(60%),advance(20%),benchmark(20%)
+515021910153_盛佩瑶,Pass,Pass,Pass
+515030910624_曹孟尧,Failed,Failed,failed
+515030910640_吴怡然,Failed,Pass,Pass
+515030910450_卢思迪,Pass,Pass,Pass
+515030910629_杜泓睿,Failed,Pass,Pass
+515030910641_徐遥,Failed,Pass,Pass
+515030910584_方智涌,Failed,Failed,failed
+515030910634_朱奕,Failed,Failed,failed
+515030910642_陈欣昊,Failed,Failed,failed
+515030910592_黎金宁,Failed,Failed,Pass
+515030910638_叶昊然,Failed,Pass,Pass
+515030910644_游志宇,Failed,Failed,failed
+515030910623_黄子璇,Failed,Failed,Pass
+515030910639_应思豪,Failed,Pass,Pass
+,,,
+,,,
+,,,
+,,,
+备注：,,,
+Pass表示通过测试，Failed表示测试没有通过，对于basic和advance来说，通过即获得全部分数，benchmark按照标准用时比例的方法计算,,,
+没有通过测试的原因很多，包括CE RE WA,,,
