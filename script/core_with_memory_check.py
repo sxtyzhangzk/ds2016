@@ -128,20 +128,22 @@ def TestStudent(stuName):
 		os.mkdir(testRes)
 	Prepare(stuName)
 	testList = [
-		
+		"priority_queue-basic",
+		#"priority_queue-advan-1",
+		#"priority_queue-advan-2",
+		#"priority_queue-advan-3"
 	]
 	timeTestList = [
-		"priority_queue-basic",
-		"priority_queue-advan-1",
-		"priority_queue-advan-2",
-		"priority_queue-advan-3"
+		
 	]
 	resList = []
 	resTimeList = []
 	for test in testList:
 		resList.append(Test(stuPath, stuName, test))
+		MemCheck(stuPath, stuName, test)
 	for test in timeTestList:
 		resTimeList.append(TimeTest(stuPath, stuName, test))
+		MemCheck(stuPath, stuName, test)
 	status = []
 	for res in resList:
 		if res:
@@ -171,3 +173,4 @@ for line in stuList:
 	resCsv.write('\n')
 
 resCsv.close()
+

@@ -1,9 +1,0 @@
-In file included from ./testspace/vector-basic.cc:1:
-In file included from ./testspace/vector.hpp:1:
-./testspace/../submit/515030910640_吴怡然/vector.hpp:167:2: warning: control may reach end of non-void function [-Wreturn-type]
-        }
-        ^
-./testspace/vector-basic.cc:27:5: note: in instantiation of member function 'sjtu::vector<int>::operator=' requested here
-        vv = v;
-           ^
-1 warning generated.

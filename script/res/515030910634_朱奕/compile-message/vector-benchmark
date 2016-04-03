@@ -1,6 +1,0 @@
-In file included from ./testspace/vector-benchmark.cc:1:
-In file included from ./testspace/vector.hpp:1:
-./testspace/../submit/515030910634_朱奕/vector.hpp:380:15: error: reference to non-static member function must be called
-                if (length==capacity) this->doublespace();      
-                            ^~~~~~~~
-1 error generated.

@@ -1,0 +1,16 @@
+./testspace/priority_queue-advan-1.cc:39:16: warning: format specifies type 'int' but the argument has type 'size_type' (aka 'unsigned long') [-Wformat]
+        printf("%d ", Q.size());
+                ~~    ^~~~~~~~
+                %lu
+./testspace/priority_queue-advan-1.cc:81:16: warning: format specifies type 'int' but the argument has type 'size_type' (aka 'unsigned long') [-Wformat]
+        printf("%d ", Q2.size());
+                ~~    ^~~~~~~~~
+                %lu
+./testspace/priority_queue-advan-1.cc:97:16: warning: format specifies type 'int' but the argument has type 'size_type' (aka 'unsigned long') [-Wformat]
+        printf("%d ", Q2.size());
+                ~~    ^~~~~~~~~
+                %lu
+./testspace/priority_queue-advan-1.cc:197:18: warning: format specifies type 'int' but the argument has type 'const value_type' (aka 'const intnum') [-Wformat]
+                        printf("%d ", Q.top());
+                                ~~    ^~~~~~~
+4 warnings generated.

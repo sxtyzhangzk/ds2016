@@ -1,0 +1,6 @@
+6,7c6,7
+< Test 6 Fail!
+< Test 7 Fail!
+---
+> Test  6 Pass!
+> Test  7 Pass!
