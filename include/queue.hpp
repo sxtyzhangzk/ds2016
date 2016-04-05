@@ -9,9 +9,16 @@ namespace sjtu {
 /**
  * a container whose behavior is similar to a queue.
  * It should be based on the list you had written before.
+ * It should be based on the list you had written before.
+ * It should be based on the list you had written before.
+ * 重要的事情要说三遍：请调用自己写的list来实现
+ * 重要的事情要说三遍：请调用自己写的list来实现
+ * 重要的事情要说三遍：请调用自己写的list来实现
  */
 template<typename T>
 class queue {
+	// hint: you can use you own name to store the data.
+	list<T> data;
 public:
 	/**
 	 * TODO constructors
