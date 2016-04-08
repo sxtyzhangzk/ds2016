@@ -16,6 +16,7 @@ class pair {
 public:
 	FT first;
 	ST second;
+	// 为了方便使用，请在这里加上构造函数吧，虽然我不测试
 };
 
 template<
@@ -27,6 +28,7 @@ public:
 	/**
 	 * the internal type of data.
 	 * it should have a default constructor, a copy constructor.
+	 * You can use sjtu::map as value_type by typedef.
 	 */
 	class value_type {
 
@@ -76,7 +78,7 @@ public:
 		bool operator!=(const const_iterator &rhs) const {}
 	};
 	class const_iterator {
-
+		// it should has similar member method as iterator.
 	};
 	/**
 	 * TODO two constructors
@@ -148,7 +150,7 @@ public:
 	 *     since this container does not allow duplicates.
 	 * The default method of check the equivalence is !(a < b || b > a)
 	 */
-	size_t count() {}
+	size_t count(const Key &key) {}
 	/**
 	 * Finds an element with key equivalent to key.
 	 * key value of the element to search for.
