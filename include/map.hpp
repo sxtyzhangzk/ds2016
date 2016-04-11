@@ -16,7 +16,8 @@ class pair {
 public:
 	FT first;
 	ST second;
-	// 为了方便使用，请在这里加上构造函数吧，虽然我不测试
+	pair() {}
+	pair(FT _first, ST _second) : first(_first), second(_second) {}
 };
 
 template<
@@ -30,11 +31,13 @@ public:
 	 * it should have a default constructor, a copy constructor.
 	 * You can use sjtu::map as value_type by typedef.
 	 */
-	class value_type {
-
-	};
+	typedef pair<const Key, T> value_type;
 	/**
 	 * see BidirectionalIterator at CppReference for help.
+	 *
+	 * if there is anything wrong throw invalid_iterator.
+	 *     like it = map.begin(); --it;
+	 *       or it = map.end(); ++end();
 	 */
 	class const_iterator;
 	class iterator {
@@ -44,6 +47,12 @@ public:
 		 *   just add whatever you want.
 		 */
 	public:
+		iterator() {
+			// TODO
+		}
+		iterator(const iterator &other) {
+			// TODO
+		}
 		/**
 		 * return a new iterator which pointer n-next elements
 		 *   even if there are not enough elements, just return the answer.
@@ -76,9 +85,29 @@ public:
 		 */
 		bool operator!=(const iterator &rhs) const {}
 		bool operator!=(const const_iterator &rhs) const {}
+
+		/**
+		 * for the support of it->first. 
+		 * See <http://kelvinh.github.io/blog/2013/11/20/overloading-of-member-access-operator-dash-greater-than-symbol-in-cpp/> for help.
+		 */
+		value_type* operator->() noexcept {}
 	};
 	class const_iterator {
 		// it should has similar member method as iterator.
+		//  and it should be able to construct from an iterator.
+		private:
+			// data members.
+		public:
+			const_iterator() {
+				// TODO
+			}
+			const_iterator(const const_iterator &other) {
+				// TODO
+			}
+			const_iterator(const iterator &other) {
+				// TODO
+			}
+			// And other methods in iterator.
 	};
 	/**
 	 * TODO two constructors
