@@ -170,6 +170,8 @@ public:
 	pair<iterator, bool> insert(const value_type &value) {}
 	/**
 	 * erase the element at pos.
+	 *
+	 * throw if pos pointed to a bad element (pos == this->end() || pos points an element out of this)
 	 */
 	void erase(iterator pos) {}
 	/**
