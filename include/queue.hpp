@@ -32,7 +32,7 @@ public:
 	/**
 	 * TODO Assignment operator
 	 */
-	queue<T> &operator=(const queue<T> &other) {}
+	queue &operator=(const queue &other) {}
 	
 	/**
 	 * get the first of the queue.

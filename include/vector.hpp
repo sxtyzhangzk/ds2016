@@ -95,7 +95,7 @@ public:
 	 * Atleast three: default constructor, copy constructor and a constructor for std::vector
 	 */
 	vector() {}
-	vector(const vector<T> &other) {}
+	vector(const vector &other) {}
 	/**
 	 * TODO Destructor
 	 */
@@ -103,7 +103,7 @@ public:
 	/**
 	 * TODO Assignment operator
 	 */
-	vector<T>& operator=(const vector<T> &other) {}
+	vector &operator=(const vector &other) {}
 	/**
 	 * assigns specified element with bounds checking
 	 * throw index_out_of_bound if pos is not in [0, size)

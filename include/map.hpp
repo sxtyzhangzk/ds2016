@@ -113,11 +113,11 @@ public:
 	 * TODO two constructors
 	 */
 	map() {}
-	map(const map<Key, T, Compare> &other) {}
+	map(const map &other) {}
 	/**
 	 * TODO assignment operator
 	 */
-	map<Key, T, Compare> &operator=(const map<Key, T, Compare> &other) {}
+	map &operator=(const map &other) {}
 	/**
 	 * TODO Destructors
 	 */

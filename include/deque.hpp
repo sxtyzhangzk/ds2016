@@ -75,7 +75,7 @@ public:
 	 * TODO Constructors
 	 */
 	deque() {}
-	deque(const deque<T> &other) {}
+	deque(const deque &other) {}
 	/**
 	 * TODO Deconstructor
 	 */
@@ -83,7 +83,7 @@ public:
 	/**
 	 * TODO assignment operator
 	 */
-	deque<T> &operator=(const deque<T> &other) {}
+	deque &operator=(const deque &other) {}
 	/**
 	 * access specified element with bounds checking
 	 * throw index_out_of_bound if out of bound.

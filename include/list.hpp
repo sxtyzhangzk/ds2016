@@ -66,7 +66,7 @@ public:
 	 * Constructors at least a default constructor and a copy constructor
 	 */
 	list() {}
-	list(const list<T> &other) {}
+	list(const list &other) {}
 	/**
 	 * TODO Destructor
 	 */
@@ -75,7 +75,7 @@ public:
 	 * TODO
 	 * assignment operator
 	 */
-	list<T> & operator=(const list<T> &other) {}
+	list &operator=(const list &other) {}
 	/**
 	 * access the first element
 	 * throw container_is_empty when it is empty.

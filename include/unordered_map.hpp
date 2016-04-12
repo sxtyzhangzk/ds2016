@@ -119,7 +119,7 @@ public:
 	 * TODO Constructor
 	 */
 	unordered_map() {}
-	unordered_map(const unordered_map<Key, T, Hash, KeyEqual> &other) {}
+	unordered_map(const unordered_map &other) {}
 	/**
 	 * TODO Destructor
 	 */
@@ -127,7 +127,7 @@ public:
 	/**
 	 * TODO assignment operator
 	 */
-	unordered_map<Key, T, Hash, KeyEqual> &operator=(const unordered_map<Key, T, Hash, KeyEqual> &other) {}
+	unordered_map &operator=(const unordered_map &other) {}
 	/**
 	 * returns an iterator to the beginning
 	 */
