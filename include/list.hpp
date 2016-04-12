@@ -53,6 +53,10 @@ public:
 		 */
 		bool operator!=(const iterator &rhs) const {}
 		bool operator!=(const const_iterator &rhs) const {}
+		/**
+		 * operator->
+		 */
+		T* operator->() const {}
 	};
 	class const_iterator {
 

@@ -77,7 +77,7 @@ public:
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
-		T& operator*() const{}
+		value_type& operator*() const{}
 		bool operator==(const iterator &rhs) const {}
 		bool operator==(const const_iterator &rhs) const {}
 		/**
