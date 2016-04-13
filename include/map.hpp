@@ -1,5 +1,5 @@
 /**
- * implement a container like std::vector
+ * implement a container like std::map
  */
 #ifndef SJTU_MAP_HPP
 #define SJTU_MAP_HPP
