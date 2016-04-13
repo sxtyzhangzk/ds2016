@@ -116,13 +116,15 @@ public:
 	/**
 	 * removes the element at pos.
 	 * returns an iterator following the last removed element.
+	 * If there was anything wrong with the iterator, throw invalid_iterator.
 	 * If the iterator pos refers to the last element, the end() iterator is returned.
 	 */
 	iterator erase(iterator pos) {}
 	/**
 	 * removes the elements in range [first, last).
 	 * returns an iterator following the last removed element.
-	 * If the iterator pos refers to the last element, the end() iterator is returned.
+	 * If there was anything wrong with these iterators, throw invalid_iterator.
+	 * In this case, return last.
 	 */
 	iterator erase(iterator first, iterator last) {}
 	/**
