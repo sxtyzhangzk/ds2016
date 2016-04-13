@@ -7,18 +7,10 @@
 // only for std::less<T>
 #include <functional>
 #include <cstddef>
- #include "exceptions.hpp"
+#include "utility.hpp"
+#include "exceptions.hpp"
 
 namespace sjtu {
-
-template<class FT, class ST>
-class pair {
-public:
-	FT first;
-	ST second;
-	pair() {}
-	pair(FT _first, ST _second) : first(_first), second(_second) {}
-};
 
 template<
 	class Key,
