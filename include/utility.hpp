@@ -10,7 +10,7 @@ class pair {
 public:
 	T1 first;
 	T2 second;
-	constexpr pair() {}
+	constexpr pair() : first(), second() {}
 	pair(const pair &other) = default;
 	pair(pair &&other) = default;
 	pair(const T1 &x, const T2 &y) : first(x), second(y) {}
