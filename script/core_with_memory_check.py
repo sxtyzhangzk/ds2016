@@ -78,14 +78,16 @@ def Test(stuPath, stuName, testName):
 		if RunTest(testName, testOut):
 			if CheckAns(testOutFilename, "testans/testans-%s" % (testName), diffOut):
 				print("%s: %s: passed." % (stuName, testName))
-				return True
+				return 0
 			else:
 				print("%s: %s: failed (Wrong Answer)." % (stuName, testName))
+				return 1
 		else:
 			print("%s: %s: failed (Runtime Error)." % (stuName, testName))
+			return 2
 	else:
 		print("%s: %s: failed (Compile Error)." % (stuName, testName))
-	return False
+		return 3
 
 def TimeTest(stuPath, stuName, testName):
 	print("%s: starting the test %s, " % (stuName, testName))
@@ -98,15 +100,16 @@ def TimeTest(stuPath, stuName, testName):
 		if Time(testName, testOut, testErr):
 			if CheckAns(testOutFilename, "testans/testans-%s" % (testName), diffOut):
 				print("%s: %s: passed." % (stuName, testName))
-				return True
+				return 0
 			else:
 				print("%s: %s: failed (Wrong Answer)." % (stuName, testName))
+				return 1
 		else:
 			print("%s: %s: failed (Runtime Error)." % (stuName, testName))
+			return 2
 	else:
 		print("%s: %s: failed (Compile Error)." % (stuName, testName))
-	return False
-
+		return 3
 
 
 def TestStudent(stuName):
@@ -136,6 +139,7 @@ def TestStudent(stuName):
 	timeTestList = [
 		
 	]
+	status = []
 	resList = []
 	resTimeList = []
 	for test in testList:
@@ -146,15 +150,23 @@ def TestStudent(stuName):
 		MemCheck(stuPath, stuName, test)
 	status = []
 	for res in resList:
-		if res:
+		if res == 0:
 			status.append("Pass")
-		else:
-			status.append("Failed")
+		elif res == 1:
+			status.append("Failed(Wrong Answer)")
+		elif res == 2:
+			status.append("Failed(Runtime Error)")
+		elif res == 3:
+			status.append("Failed(Compile Error)")
 	for res in resTimeList:
-		if res:
+		if res == 0:
 			status.append("Pass")
-		else:
-			status.append("failed")
+		elif res == 1:
+			status.append("Failed(Wrong Answer)")
+		elif res == 2:
+			status.append("Failed(Runtime Error)")
+		elif res == 3:
+			status.append("Failed(Compile Error)")
 	return status
 
 try:
