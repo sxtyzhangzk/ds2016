@@ -140,12 +140,12 @@ int main()
 	TestInteger();
 	TestMatrix();
 	TestBint();
-	TestDFS<Integer>(0, 1e4, Integer(randNum(N, N + 17)));
-	TestDFS<Diamond::Matrix<double>>(0, 1e4, Diamond::Matrix<double>(randNum(7, 10 + 7), randNum(7, 10 + 7), randNum(7 + 3, (100 + 17)) * 1.0 / randNum(7, 17)));
-	TestDFS<Util::Bint>(0, 1e4,Util::Bint(randNum(N, N + 17)) * 1000000000ll * 1000000000ll * 1000000000ll);
-	TestDFS<TypeA<Integer>>(0, 1e4, TypeA<Integer>());
-	TestDFS<TypeA<Diamond::Matrix<double>>>(0, 1e4, TypeA<Diamond::Matrix<double>>());
-	TestDFS<TypeA<Util::Bint>>(0, 1e4, TypeA<Util::Bint>());
+	TestDFS<Integer>(0, 100, Integer(randNum(N, N + 17)));
+	TestDFS<Diamond::Matrix<double>>(0, 100, Diamond::Matrix<double>(randNum(7, 10 + 7), randNum(7, 10 + 7), randNum(7 + 3, (100 + 17)) * 1.0 / randNum(7, 17)));
+	TestDFS<Util::Bint>(0, 100, Util::Bint(randNum(N, N + 17)) * 1000000000ll * 1000000000ll * 1000000000ll);
+	TestDFS<TypeA<Integer>>(0, 100, TypeA<Integer>());
+	TestDFS<TypeA<Diamond::Matrix<double>>>(0, 100, TypeA<Diamond::Matrix<double>>());
+	TestDFS<TypeA<Util::Bint>>(0, 100, TypeA<Util::Bint>());
 	std :: cout << "Okay" << endl;
 	return 0;
 }
