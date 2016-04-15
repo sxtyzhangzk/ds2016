@@ -1,7 +1,7 @@
 import os
 import sys
 import subprocess
-stuList = open("students", "r");
+stuList = open("students-list", "r");
 
 def Prepare(stuName):
 	print("%s: preparing the test..." % (stuName))
@@ -20,7 +20,7 @@ def Prepare(stuName):
 	]
 	for filename in fileList:
 		targetFile = open(dirname + filename, "w")
-		targetFile.write("#include \"../submit/%s/%s\"" % (stuName, filename))
+		targetFile.write("#include \"../students-source/%s/%s\"" % (stuName, filename))
 		targetFile.close()
 	print("%s: generated the headers." % (stuName))
 
