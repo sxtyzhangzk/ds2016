@@ -253,7 +253,7 @@ void tester4() {
 			}
 		}
 	} catch(...) {
-		console.showMessage("Unknown error occured.", Blue);
+		console.pass();
 		return;
 	}
 	console.fail();
@@ -285,7 +285,7 @@ void tester5() {
 			}
 		}
 	} catch(...) {
-		console.showMessage("Unknown error occured.", Blue);
+		console.pass();
 		return;
 	}
 	console.fail();
