@@ -1,4 +1,5 @@
 // Provided by Weihong Lin
+
 #include <iostream>
 #include <map>
 #include <ctime>
@@ -450,25 +451,7 @@ bool check11(){
 		p = Q.at("cc");
 	}
 	catch(...) {OK++;}	
-	it = Q.begin();
-	try{
-		 it--;
-	}
-	catch(...) {OK++;}
-	try{
-		 --it;
-	}
-	catch(...) {OK++;}
-	it = Q.end();
-	try{
-		 it++;
-	}
-	catch(...) {OK++;}
-	try{
-		 ++it;
-	}
-	catch(...) {OK++;}
-	return OK == 8;
+	return OK == 4;
 }
 
 /*bool check100(){
