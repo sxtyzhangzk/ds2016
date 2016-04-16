@@ -7,7 +7,7 @@
 std::default_random_engine myRandom(10203);
 
 const int n = 100000;
-const int m = 1000000;
+const int m = 3000000;
 
 const int limitN = n + 5;
 
@@ -26,7 +26,7 @@ int dist[limitN] = {0};
 void ConstructGraph()
 {
 	std::uniform_int_distribution<int> vertex(1, n);
-	std::uniform_int_distribution<int> weight(5, 10000);
+	std::uniform_int_distribution<int> weight(5, 1000);
 	for (int i = 0; i < m; ++i) {
 		int u = vertex(myRandom);
 		int v;
@@ -35,6 +35,25 @@ void ConstructGraph()
 		} while (u == v);
 		int w = weight(myRandom);
 		to[u].push_back(Edge(v, w));
+	}
+}
+
+void RemoveEdges()
+{
+	std::uniform_int_distribution<int> vertex(1, n);
+	for (int i = 0; i < 1500000; ++i) {
+		int u;
+		do {
+			u = vertex(myRandom);
+		} while (to[u].size() == 0);
+
+		std::uniform_int_distribution<int> which(0, to[u].size() - 1);
+		int k = which(myRandom);
+		std::list<Edge>::iterator iter = to[u].begin();
+		for (int j = 0; j < k; ++j) {
+			++iter;
+		}
+		to[u].erase(iter);
 	}
 }
 
@@ -63,6 +82,7 @@ void Spfa()
 int main()
 {
 	ConstructGraph();
+	RemoveEdges();
 	Spfa();
 	for (int i = 1; i <= n; ++i) {
 		std::cout << "dist[" << i << "]=" << dist[i] << std::endl;
