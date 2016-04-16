@@ -173,7 +173,7 @@ public:
 	 *     since this container does not allow duplicates.
 	 * The default method of check the equivalence is !(a < b || b > a)
 	 */
-	size_t count(const Key &key) {}
+	size_t count(const Key &key) const {}
 	/**
 	 * Finds an element with key equivalent to key.
 	 * key value of the element to search for.
