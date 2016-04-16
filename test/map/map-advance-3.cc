@@ -6,7 +6,7 @@
 #include <map>
 #include <ctime>
 #include "exceptions.hpp"
-#include "map.hpp"
+#include "lwh"
 
 const int MAXN = 10001;
 
@@ -22,19 +22,23 @@ private:
 	int counter, enter;
 public:	
 	TestCore(const char *title, const int &id, const int &total) : title(title), id(id), total(total), dfn(clock()), counter(0), enter(0) {
-		std::cout << "Test " << id << ": " << title << std::endl;
 	}
 	void init() {
+		static char tmp[200];
+		sprintf(tmp, "Test %d: %-55s", id, title);
+		printf("%-65s", tmp);
 	}
 	void showMessage(const char *s, const Color &c = Normal) {
 	}
 	void showProgress() {
 	}
 	void pass() {
-		std::cout << "PASSED" << std::endl;
+		showMessage("PASSED", Green);
+		printf("PASSED");
 	}
 	void fail() {
-		std::cout << "FAILED" << std::endl;
+		showMessage("FAILED", Red);
+		printf("FAILED");
 	}
 	~TestCore() {
 		puts("");
@@ -253,7 +257,7 @@ void tester4() {
 			}
 		}
 	} catch(...) {
-		console.pass();
+		console.showMessage("Unknown error occured.", Blue);
 		return;
 	}
 	console.fail();
@@ -285,7 +289,7 @@ void tester5() {
 			}
 		}
 	} catch(...) {
-		console.pass();
+		console.showMessage("Unknown error occured.", Blue);
 		return;
 	}
 	console.fail();
@@ -473,9 +477,10 @@ void tester10() {
 		sjtu::map<IntA, IntB, Compare> src1(srcmap), src2;
 		src2 = src1 = src1;
 		for (int i = 0; i < (int)ret.size(); i++) {
-			auto x = ret[i];
-			std2.erase(std2.find(x));
-			src2.erase(src2.find(x));
+			if (stdmap.find(ret[i]) != stdmap.end()) {
+				srcmap.erase(srcmap.find(ret[i]));
+				stdmap.erase(stdmap.find(ret[i]));
+			}
 			console.showProgress();
 		}
 		ret = generator(MAXN);
