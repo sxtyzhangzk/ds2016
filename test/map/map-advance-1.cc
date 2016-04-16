@@ -1,5 +1,4 @@
 // Provided by Weihong Lin
-
 #include <iostream>
 #include <map>
 #include <ctime>
@@ -450,12 +449,26 @@ bool check11(){
 	try{
 		p = Q.at("cc");
 	}
-	catch(...) {OK++;}
+	catch(...) {OK++;}	
+	it = Q.begin();
 	try{
-		Q.erase(kit);
+		 it--;
 	}
 	catch(...) {OK++;}
-	return OK == 5;
+	try{
+		 --it;
+	}
+	catch(...) {OK++;}
+	it = Q.end();
+	try{
+		 it++;
+	}
+	catch(...) {OK++;}
+	try{
+		 ++it;
+	}
+	catch(...) {OK++;}
+	return OK == 8;
 }
 
 /*bool check100(){
@@ -509,7 +522,7 @@ void easy_test(){
 }
 
 int main(){
-	
+	//freopen("testans_advance.out", "w", stdout);
 	srand(time(NULL));
 	easy_test();
 	if(!check1()) cout << "Test 1 Failed..." << endl; else cout << "Test 1 Passed!" << endl;
