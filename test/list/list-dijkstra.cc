@@ -5,6 +5,7 @@
 #include <vector>
 #include <queue>
 #include <utility>
+#include <cstring>
 
 std::default_random_engine myRandom(32421);
 
