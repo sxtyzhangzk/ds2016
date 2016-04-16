@@ -3,3 +3,4 @@ script/res
 list-dijkstra
 students-list
 script/students-source
+list-spfa

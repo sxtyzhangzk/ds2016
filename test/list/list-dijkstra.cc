@@ -1,8 +1,6 @@
 // Provided by Xinhao Chen
 #include <iostream>
 #include <random>
-#include "../../include/list.hpp"
-#include "../../include/vector.hpp"
 #include <list>
 #include <vector>
 #include <queue>
@@ -67,17 +65,17 @@ void Dijkstra(int start)
 int main()
 {
 	ConstructGraph();
-	std::cout << "start from 1==========" << std::endl;
+	std::cout << "Shortest Path from Node 1" << std::endl;
 	Dijkstra(1);
 	for (int i = 1; i <= 100; ++i) {
 		std::cout << "dist[" << i << "]=" << d[i] << std::endl;
 	}
-	std::cout << "start from 10==========" << std::endl;
+	std::cout << "Shortest Path from Node 10" << std::endl;
 	Dijkstra(10);
 	for (int i = 1; i <= 100; ++i) {
 		std::cout << "dist[" << i << "]=" << d[i] << std::endl;
 	}
-	std::cout << "start from 100==========" << std::endl;
+	std::cout << "Shortest Path from Node 100" << std::endl;
 	Dijkstra(100);
 	for (int i = 1; i <= 100; ++i) {
 		std::cout << "dist[" << i << "]=" << d[i] << std::endl;
