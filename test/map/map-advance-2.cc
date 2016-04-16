@@ -212,7 +212,7 @@ int main(){
 	test_const_at();
 	test_count();
 	test_find();
-	test_throw();
-	test_const_throw();
+	//test_throw();
+	//test_const_throw();
 	test_copy();
 }
