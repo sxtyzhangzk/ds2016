@@ -161,11 +161,11 @@ namespace sjtu
 
 			value_type & operator*() const
 			{
-				return cur->val;
+				return this->cur->val;
 			}
 			value_type * operator->() const noexcept
 			{
-				return &cur->val;
+				return &this->cur->val;
 			}
 		};
 
@@ -173,8 +173,8 @@ namespace sjtu
 		/**
 		 * TODO two constructors
 		 */
-		map() : root(nullptr) {}
-		map(const map &other) : elecount(other.elecount)
+		map() : root(nullptr), head(nullptr), tail(nullptr), elecount(0) {}
+		map(const map &other) : elecount(other.elecount), root(nullptr), head(nullptr), tail(nullptr)
 		{
 			root = clone_tree(other.root);
 			build_link(root);
