@@ -6,7 +6,6 @@
 
  // only for std::less<T>
 #include <functional>
-#include <memory>
 #include <algorithm>
 #include <cstddef>
 #include <cassert>
@@ -274,6 +273,7 @@ namespace sjtu
 				delete_tree(root);
 				root = nullptr;
 				head = nullptr;
+				tail = nullptr;
 				elecount = 0;
 			}
 		}
