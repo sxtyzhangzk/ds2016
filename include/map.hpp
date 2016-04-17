@@ -25,6 +25,8 @@ namespace sjtu
 	typedef std::less<Key> Compare;*/
 	class map
 	{
+	protected:
+		class node;
 	public:
 		/**
 			* the internal type of data.
@@ -39,7 +41,6 @@ namespace sjtu
 			*     like it = map.begin(); --it;
 			*       or it = map.end(); ++end();
 			*/
-		class node;
 		class const_iterator
 		{
 			friend class map;
