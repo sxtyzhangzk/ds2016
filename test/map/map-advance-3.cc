@@ -101,6 +101,9 @@ public:
 	bool operator ==(const IntB &rhs)const {
 		return *val == *rhs.val;
 	}
+	~IntB() {
+		delete this->val;
+	}
 };
 
 struct Compare{
