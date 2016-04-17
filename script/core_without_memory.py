@@ -2,7 +2,7 @@ import os
 import sys
 import subprocess
 
-stuList = open("students-list", "r");
+stuList = open("students-list", "r")
 
 fileList = [
 	"algorithm.hpp",      
@@ -141,13 +141,13 @@ def TestStudent(stuName):
 		os.mkdir(testRes)
 	Prepare(stuName)
 	testList = [
-		
+		"map-basic",
+		"map-advance-1",
+		"map-advance-2",
+		"map-advance-3"
 	]
 	timeTestList = [
-		"priority_queue-basic",
-		"priority_queue-advan-1",
-		"priority_queue-advan-2",
-		"priority_queue-advan-3"
+		
 	]
 	resList = []
 	resTimeList = []

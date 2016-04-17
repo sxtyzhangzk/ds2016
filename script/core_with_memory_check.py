@@ -1,28 +1,36 @@
 import os
 import sys
 import subprocess
-stuList = open("students-list", "r");
+stuList = open("students-list", "r")
+
+fileList = [
+	"algorithm.hpp",      
+	"list.hpp",           
+	"queue.hpp",          
+	"vector.hpp",
+	"deque.hpp",          
+	"map.hpp",            
+	"stack.hpp",
+	"exceptions.hpp",     
+	"priority_queue.hpp", 
+	"unordered_map.hpp",
+	"utility.hpp"
+]
 
 def Prepare(stuName):
 	print("%s: preparing the test..." % (stuName))
 	dirname = "./testspace/"
-	fileList = [
-		"algorithm.hpp",      
-		"list.hpp",           
-		"queue.hpp",          
-		"vector.hpp",
-		"deque.hpp",          
-		"map.hpp",            
-		"stack.hpp",
-		"exceptions.hpp",     
-		"priority_queue.hpp", 
-		"unordered_map.hpp",
-	]
 	for filename in fileList:
 		targetFile = open(dirname + filename, "w")
 		targetFile.write("#include \"../students-source/%s/%s\"" % (stuName, filename))
 		targetFile.close()
 	print("%s: generated the headers." % (stuName))
+
+def Clean(stuName):
+	print("%s: clean test file." % (stuName))
+	dirname = "./testspace/"
+	for filename in fileList:
+		os.remove(dirname + filename)
 
 def CompileTest(testName, outfile):
 	testCompile = subprocess.Popen(["g++", "-std=c++11", "-O2", "./testspace/%s.cc" % (testName), "-o", "./testspace/%s" % (testName)], stderr = outfile);
@@ -78,6 +86,7 @@ def Test(stuPath, stuName, testName):
 		if RunTest(testName, testOut):
 			if CheckAns(testOutFilename, "testans/testans-%s" % (testName), diffOut):
 				print("%s: %s: passed." % (stuName, testName))
+				MemCheck(stuPath, stuName, testName)
 				return 0
 			else:
 				print("%s: %s: failed (Wrong Answer)." % (stuName, testName))
@@ -100,6 +109,7 @@ def TimeTest(stuPath, stuName, testName):
 		if Time(testName, testOut, testErr):
 			if CheckAns(testOutFilename, "testans/testans-%s" % (testName), diffOut):
 				print("%s: %s: passed." % (stuName, testName))
+				MemCheck(stuPath, stuName, testName)
 				return 0
 			else:
 				print("%s: %s: failed (Wrong Answer)." % (stuName, testName))
@@ -131,10 +141,10 @@ def TestStudent(stuName):
 		os.mkdir(testRes)
 	Prepare(stuName)
 	testList = [
-		"priority_queue-basic",
-		#"priority_queue-advan-1",
-		#"priority_queue-advan-2",
-		#"priority_queue-advan-3"
+		"map-basic",
+		"map-advance-1",
+		"map-advance-2",
+		"map-advance-3"
 	]
 	timeTestList = [
 		
@@ -144,10 +154,8 @@ def TestStudent(stuName):
 	resTimeList = []
 	for test in testList:
 		resList.append(Test(stuPath, stuName, test))
-		MemCheck(stuPath, stuName, test)
 	for test in timeTestList:
 		resTimeList.append(TimeTest(stuPath, stuName, test))
-		MemCheck(stuPath, stuName, test)
 	status = []
 	for res in resList:
 		if res == 0:
