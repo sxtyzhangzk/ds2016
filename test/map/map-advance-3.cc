@@ -90,17 +90,19 @@ public:
 	
 	IntB & operator =(const IntB &rhs) {
 		if (this == &rhs) return *this;
+		delete this->val;
 		val = new int(*rhs.val);
 		return *this;
 	}
 	
-	bool operator !=(const IntB &rhs)const {
+	bool operator !=(const IntB &rhs) const {
 		return *val != *rhs.val;
 	}
 	
-	bool operator ==(const IntB &rhs)const {
+	bool operator ==(const IntB &rhs) const {
 		return *val == *rhs.val;
 	}
+	
 	~IntB() {
 		delete this->val;
 	}
