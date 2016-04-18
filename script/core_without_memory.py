@@ -141,13 +141,12 @@ def TestStudent(stuName):
 		os.mkdir(testRes)
 	Prepare(stuName)
 	testList = [
-		"map-basic",
-		"map-advance-1",
-		"map-advance-2",
-		"map-advance-3"
+		"list-basic",
+		"list-spfa",
+		"list-dijkstra",
 	]
 	timeTestList = [
-		
+		"list-benchmark"
 	]
 	resList = []
 	resTimeList = []
