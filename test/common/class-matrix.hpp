@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef DIAMOND_MATRIX_HPP
 #define DIAMOND_MATRIX_HPP
 
