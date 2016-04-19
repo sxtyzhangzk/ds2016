@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <vector>
+#include <stdexcept>
 
 namespace Util {
 
@@ -61,7 +62,6 @@ public:
 
 #include <iomanip>
 #include <algorithm>
-#include <stdexcept>
 
 namespace Util {
 
