@@ -178,9 +178,6 @@ Bint::Bint(std::string x)
 Bint::Bint(const Bint &b)
 	: capacity(b.capacity), length(b.length), isMinus(b.isMinus)
 {
-	if (this == &b) {
-		return;
-	}
 	_SafeNewSpace(data, capacity);
 	memcpy(data, b.data, sizeof(unsigned int) * capacity);
 }
@@ -188,9 +185,6 @@ Bint::Bint(const Bint &b)
 Bint::Bint(Bint &&b) noexcept
 	:capacity(b.capacity), length(b.length), isMinus(b.isMinus)
 {
-	if (this == &b) {
-		return;
-	}
 	data = b.data;
 	b.data = nullptr;
 }
