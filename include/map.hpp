@@ -57,7 +57,7 @@ public:
 		/**
 		 * TODO ++iter
 		 */
-		iterator& operator++() {}
+		iterator & operator++() {}
 		/**
 		 * TODO iter--
 		 */
@@ -65,11 +65,11 @@ public:
 		/**
 		 * TODO --iter
 		 */
-		iterator& operator--() {}
+		iterator & operator--() {}
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
-		value_type& operator*() const{}
+		value_type & operator*() const {}
 		bool operator==(const iterator &rhs) const {}
 		bool operator==(const const_iterator &rhs) const {}
 		/**
@@ -82,7 +82,7 @@ public:
 		 * for the support of it->first. 
 		 * See <http://kelvinh.github.io/blog/2013/11/20/overloading-of-member-access-operator-dash-greater-than-symbol-in-cpp/> for help.
 		 */
-		value_type* operator->() noexcept {}
+		value_type* operator->() const noexcept {}
 	};
 	class const_iterator {
 		// it should has similar member method as iterator.
@@ -100,6 +100,8 @@ public:
 				// TODO
 			}
 			// And other methods in iterator.
+			// And other methods in iterator.
+			// And other methods in iterator.
 	};
 	/**
 	 * TODO two constructors
@@ -109,7 +111,7 @@ public:
 	/**
 	 * TODO assignment operator
 	 */
-	map &operator=(const map &other) {}
+	map & operator=(const map &other) {}
 	/**
 	 * TODO Destructors
 	 */
@@ -129,6 +131,7 @@ public:
 	 *   performing an insertion if such key does not already exist.
 	 */
 	T & operator[](const Key &key) {}
+	const T & operator[](const Key &key) const {}
 	/**
 	 * return a iterator to the beginning
 	 */

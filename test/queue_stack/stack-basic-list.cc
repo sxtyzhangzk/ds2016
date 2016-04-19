@@ -4,8 +4,8 @@
 #include "../common/class-bint.hpp"
 #include "list.hpp"
 
-sjtu::stack<int, sjtu::list> stackInt;
-sjtu::stack<Util::Bint, sjtu::list> stackBint;
+sjtu::stack<int, sjtu::list<int>> stackInt;
+sjtu::stack<Util::Bint, sjtu::list<Util::Bint>> stackBint;
 
 int main()
 {
@@ -13,8 +13,8 @@ int main()
 		stackInt.push(i);
 		stackBint.push(Util::Bint(i));
 	}
-	sjtu::stack<Util::Bint, sjtu::list> duplicateStackBint(stackBint);
-	sjtu::stack<int, sjtu::list> duplicateStackInt;
+	sjtu::stack<Util::Bint, sjtu::list<Util::Bint>> duplicateStackBint(stackBint);
+	sjtu::stack<int, sjtu::list<int>> duplicateStackInt;
 	duplicateStackInt = stackInt;
 	std::cout << "a stack for int" << std::endl; 
 	while (!stackInt.empty()) {

@@ -19,9 +19,7 @@ public:
 	 * the internal type of data.
 	 * it should have a default constructor, a copy constructor.
 	 */
-	class value_type {
-
-	};
+	typedef pair<const Key, T> value_type;
 	/**
 	 * see BidirectionalIterator at CppReference for help.
 	 */
@@ -57,7 +55,7 @@ public:
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
-		T& operator*() const {}
+		value_type& operator*() const {}
 		bool operator==(const iterator &rhs) const {}
 		bool operator==(const const_iterator &rhs) const {}
 		/**
@@ -65,9 +63,30 @@ public:
 		 */
 		bool operator!=(const iterator &rhs) const {}
 		bool operator!=(const const_iterator &rhs) const {}
+		/**
+		 * for the support of it->first. 
+		 * See <http://kelvinh.github.io/blog/2013/11/20/overloading-of-member-access-operator-dash-greater-than-symbol-in-cpp/> for help.
+		 */
+		value_type* operator->() const noexcept {}
 	};
 	class const_iterator {
-
+		// it should has similar member method as iterator.
+		//  and it should be able to construct from an iterator.
+		private:
+			// data members.
+		public:
+			const_iterator() {
+				// TODO
+			}
+			const_iterator(const const_iterator &other) {
+				// TODO
+			}
+			const_iterator(const iterator &other) {
+				// TODO
+			}
+			// And other methods in iterator.
+			// And other methods in iterator.
+			// And other methods in iterator.
 	};
 	/**
 	 * iterators for a certain hash value elements, behave like list::iterator
@@ -103,17 +122,38 @@ public:
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
-		T& operator*() const{}
-		bool operator==(const iterator &rhs) {}
-		bool operator==(const const_iterator &rhs) {}
+		value_type& operator*() const{}
+		bool operator==(const iterator &rhs) const {}
+		bool operator==(const const_iterator &rhs) const {}
 		/**
 		 * some other operator for iterator.
 		 */
-		bool operator!=(const iterator &rhs) {}
-		bool operator!=(const const_iterator &rhs) {}
+		bool operator!=(const iterator &rhs) const {}
+		bool operator!=(const const_iterator &rhs) const {}
+		/**
+		 * for the support of it->first. 
+		 * See <http://kelvinh.github.io/blog/2013/11/20/overloading-of-member-access-operator-dash-greater-than-symbol-in-cpp/> for help.
+		 */
+		value_type* operator->() const noexcept {}
 	};
 	class const_local_iterator {
-
+		// it should has similar member method as iterator.
+		//  and it should be able to construct from an iterator.
+		private:
+			// data members.
+		public:
+			const_local_iterator() {
+				// TODO
+			}
+			const_local_iterator(const const_local_iterator &other) {
+				// TODO
+			}
+			const_local_iterator(const iterator &other) {
+				// TODO
+			}
+			// And other methods in iterator.
+			// And other methods in iterator.
+			// And other methods in iterator.
 	};
 	/**
 	 * TODO Constructor
@@ -168,7 +208,7 @@ public:
 	 *     since this container does not allow duplicates.
 	 * The default method of check the equivalence is !(a < b || b > a)
 	 */
-	size_t count() {}
+	size_t count() const {}
 	/**
 	 * Finds an element with key equivalent to key.
 	 * key value of the element to search for.
@@ -192,6 +232,7 @@ public:
 	 *   performing an insertion if such key does not already exist.
 	 */
 	T & operator[](const Key &key) {}
+	const T & operator[](const Key &key) const {}
 	/**
 	 * bucket interfaces
 	 */

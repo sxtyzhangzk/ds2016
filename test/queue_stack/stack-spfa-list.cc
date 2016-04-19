@@ -22,7 +22,7 @@ struct Edge {
 };
 
 sjtu::list<Edge> to[limitN];
-sjtu::stack<int, sjtu::list> que;
+sjtu::stack<int, sjtu::list<int>> que;
 bool inStack[limitN] = {0};
 int dist[limitN] = {0};
 
