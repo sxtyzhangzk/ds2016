@@ -243,19 +243,19 @@ void tester4() {
 	try{
 		sjtu::map<IntA, IntB, Compare> srcmap;
 		++srcmap.end();
-	} catch (sjtu::invalid_iterator error) {
+	} catch (sjtu::exception error) {
 		try{
 			sjtu::map<IntA, IntB, Compare> srcmap;
 			--srcmap.begin();
-		} catch (sjtu::invalid_iterator error) {
+		} catch (sjtu::exception error) {
 			try{
 				sjtu::map<IntA, IntB, Compare> srcmap;
 				srcmap.end()++;
-			} catch (sjtu::invalid_iterator error) {
+			} catch (sjtu::exception error) {
 				try{
 					sjtu::map<IntA, IntB, Compare> srcmap;
 					srcmap.begin()--;
-				} catch (sjtu::invalid_iterator error) {
+				} catch (sjtu::exception error) {
 					console.pass();
 					return;
 				}
@@ -275,19 +275,19 @@ void tester5() {
 	try{
 		sjtu::map<IntA, IntB, Compare> srcmap;
 		++srcmap.cend();
-	} catch (sjtu::exceptions error) {
+	} catch (sjtu::exception error) {
 		try{
 			sjtu::map<IntA, IntB, Compare> srcmap;
 			--srcmap.cbegin();
-		} catch (sjtu::exceptions error) {
+		} catch (sjtu::exception error) {
 			try{
 				sjtu::map<IntA, IntB, Compare> srcmap;
 				srcmap.cend()++;
-			} catch (sjtu::exceptions error) {
+			} catch (sjtu::exception error) {
 				try{
 					sjtu::map<IntA, IntB, Compare> srcmap;
 					srcmap.cbegin()--;
-				} catch (sjtu::exceptions error) {
+				} catch (sjtu::exception error) {
 					console.pass();
 					return;
 				}
