@@ -131,6 +131,9 @@ public:
 	 *   performing an insertion if such key does not already exist.
 	 */
 	T & operator[](const Key &key) {}
+	/**
+	 * behave like at() throw index_out_of_bound if such key does not exist.
+	 */
 	const T & operator[](const Key &key) const {}
 	/**
 	 * return a iterator to the beginning
