@@ -24,6 +24,7 @@ namespace sjtu
 	typedef std::less<Key> Compare;*/
 	class map
 	{
+		friend class const_iterator;
 	protected:
 		class node;
 	public:
@@ -64,7 +65,7 @@ namespace sjtu
 				if (!cur)
 					throw invalid_iterator();
 				const_iterator iter = *this;
-				cur = cur->next;
+				cur = parent->find_next(cur->val.first, parent->root);
 				return iter;
 			}
 			/**
@@ -74,7 +75,7 @@ namespace sjtu
 			{
 				if (!cur)
 					throw invalid_iterator();
-				cur = cur->next;
+				cur = parent->find_next(cur->val.first, parent->root);
 				return *this;
 			}
 			/**
@@ -84,9 +85,9 @@ namespace sjtu
 			{
 				const_iterator iter = *this;
 				if (cur)
-					cur = cur->prev;
+					cur = parent->find_prev(cur->val.first, parent->root);
 				else
-					cur = parent->tail;
+					cur = parent->find_tail(parent->root);
 				if (!cur)
 					throw invalid_iterator();
 				return iter;
@@ -97,9 +98,9 @@ namespace sjtu
 			const_iterator& operator--()
 			{
 				if (cur)
-					cur = cur->prev;
+					cur = parent->find_prev(cur->val.first, parent->root);
 				else
-					cur = parent->tail;
+					cur = parent->find_tail(parent->root);
 				if (!cur)
 					throw invalid_iterator();
 				return *this;
@@ -172,11 +173,10 @@ namespace sjtu
 		/**
 		 * TODO two constructors
 		 */
-		map() : root(nullptr), head(nullptr), tail(nullptr), elecount(0) {}
-		map(const map &other) : elecount(other.elecount), root(nullptr), head(nullptr), tail(nullptr)
+		map() : root(nullptr), elecount(0) {}
+		map(const map &other) : elecount(other.elecount), root(nullptr)
 		{
 			root = clone_tree(other.root);
-			build_link(root);
 		}
 		/**
 		 * TODO assignment operator
@@ -187,7 +187,6 @@ namespace sjtu
 				return *this;
 			clear();
 			root = clone_tree(other.root);
-			build_link(root);
 			elecount = other.elecount;
 			return *this;
 		}
@@ -236,11 +235,11 @@ namespace sjtu
 			*/
 		iterator begin()
 		{
-			return iterator(this, head);
+			return iterator(this, find_head(root));
 		}
 		const_iterator cbegin() const
 		{
-			return const_iterator(this, head);
+			return const_iterator(this, find_head(root));
 		}
 		/**
 			* return a iterator to the end
@@ -272,8 +271,6 @@ namespace sjtu
 			{
 				delete_tree(root);
 				root = nullptr;
-				head = nullptr;
-				tail = nullptr;
 				elecount = 0;
 			}
 		}
@@ -290,28 +287,6 @@ namespace sjtu
 				return pair<iterator, bool>(iterator(this, o), false);
 			o = new node(value);
 			insert_node(o, root);
-			node *prev = find_prev(value.first, root);
-			if (!prev)
-			{
-				node *next = find_next(value.first, root);
-				head = o;
-				o->next = next;
-				o->prev = nullptr;
-				if (next)
-					next->prev = o;
-				else
-					tail = o;
-			}
-			else
-			{
-				o->prev = prev;
-				o->next = prev->next;
-				if (prev->next)
-					prev->next->prev = o;
-				else
-					tail = o;
-				prev->next = o;
-			}
 			++elecount;
 			return pair<iterator, bool>(iterator(this, o), true);
 		}
@@ -325,10 +300,6 @@ namespace sjtu
 			if (pos.parent != this || !pos.cur)
 				throw invalid_iterator();
 			remove_node(pos.cur, root);
-			/*if (pos.cur->next)
-				pos.cur->next->prev = pos.cur->prev;
-			if (pos.cur->prev)
-				pos.cur->prev->next = pos.cur->next;*/
 			delete pos.cur;
 			--elecount;
 		}
@@ -371,19 +342,29 @@ namespace sjtu
 		{
 			value_type val;
 			node *lchild, *rchild;
-			node *prev, *next;
-			size_t level;
+			size_t height;
 
 			node(const value_type& val) : 
 				val(val), 
-				lchild(nullptr), rchild(nullptr), 
-				prev(nullptr), next(nullptr), 
-				level(1) {}
+				lchild(nullptr), rchild(nullptr),  
+				height(0) {}
+
+			void maintain()
+			{
+				int hl = lchild ? lchild->height : -1;
+				int hr = rchild ? rchild->height : -1;
+				height = std::max(hl, hr) + 1;
+			}
+			int bval()
+			{
+				int hl = lchild ? lchild->height : -1;
+				int hr = rchild ? rchild->height : -1;
+				return hl - hr;
+			}
 		};
 
 	protected:
 		node *root;
-		node *head, *tail;
 		size_t elecount;
 
 	protected:
@@ -398,6 +379,15 @@ namespace sjtu
 				return find_node(key, o->lchild);
 			return o;
 		}
+
+		static int height(node *o)
+		{
+			if (!o)
+				return -1;
+			o->maintain();
+			return o->height;
+		}
+
 		void insert_node(node *new_node, node *&o)
 		{
 			static Compare cmp;
@@ -406,125 +396,82 @@ namespace sjtu
 				o = new_node;
 				return;
 			}
-			if (cmp(o->val.first, new_node->val.first))
-				insert_node(new_node, o->rchild);
-			else
+			if (cmp(new_node->val.first, o->val.first))
+			{
 				insert_node(new_node, o->lchild);
-			skew(o);
-			split(o);
+				if (height(o->lchild) - height(o->rchild) == 2)
+				{
+					if (cmp(new_node->val.first, o->lchild->val.first))
+						LL(o);
+					else
+						LR(o);
+				}
+			}
+			else
+			{
+				insert_node(new_node, o->rchild);
+				if (height(o->rchild) - height(o->lchild) == 2)
+				{
+					if (cmp(new_node->val.first, o->rchild->val.first))
+						RL(o);
+					else
+						RR(o);
+				}
+			}
+			o->maintain();
 		}
+		
 		void remove_node(node *target, node *&o)
 		{
 			static Compare cmp;
 			assert(o);
-			//assert(o->prev == find_prev(o->val.first, root));
-			//assert(o->next == find_next(o->val.first, root));
 			if (o == target)
 			{
 				if (o->lchild && o->rchild)
 				{
-					assert(o->next);
-					//assert(o->next == find_next(o->val.first, root));
-					node *k = o->next;
+					node *k = find_next(target->val.first, o->rchild);
+					assert(k);
 					remove_node(k, o->rchild);
 					k->lchild = o->lchild;
 					k->rchild = o->rchild;
-					k->prev = o->prev;
-					k->next = o->next;
-					k->level = o->level;
-					o->prev = o->next = nullptr;
 					o = k;
-					if (o->prev)
-						o->prev->next = o;
-					else
-						head = o;
-					if (o->next)
-						o->next->prev = o;
-					else
-						tail = o;
-					//assert(o->prev == find_prev(o->val.first, root));
-					//assert(o->next == find_next(o->val.first, root));
-				}
-				else if (o->rchild)
-				{
-					assert(o->rchild->level == o->level);
-					/*assert(o->prev == find_prev(o->val.first, root));
-					assert(o->next == find_next(o->val.first, root));*/
-					if (o->prev)
-					{
-						o->prev->next = o->next;
-					}
-					else
-					{
-						assert(o == head);
-						head = o->next;
-					}
-					if(o->next)
-						o->next->prev = o->prev;
-					else
-					{
-						assert(o == tail);
-						tail = o->prev;
-					}
-					//node *p = o->prev, *n = o->next;
-					o = o->rchild;
-					/*if(p)
-						assert(n == find_next(p->val.first, root));
-					if(n)
-						assert(p == find_prev(n->val.first, root));*/
-					return;
+					o->maintain();
 				}
 				else
 				{
-					assert(!o->lchild);
-					/*assert(o->prev == find_prev(o->val.first, root));
-					assert(o->next == find_next(o->val.first, root));*/
-					if (o->prev)
-					{
-						o->prev->next = o->next;
-					}
+					if (o->rchild)
+						o = o->rchild;
+					else if (o->lchild)
+						o = o->lchild;
 					else
-					{
-						assert(o == head);
-						head = o->next;
-					}
-					if(o->next)
-						o->next->prev = o->prev;	
-					else
-					{
-						assert(o == tail);
-						tail = o->prev;
-					}
-					//node *p = o->prev, *n = o->next;
-					o = nullptr;
-					/*if(p)
-						assert(n == find_next(p->val.first, root));
-					if(n)
-						assert(p == find_prev(n->val.first, root));*/
+						o = nullptr;
 					return;
 				}
 			}
+			else if (cmp(target->val.first, o->val.first))
+				remove_node(target, o->lchild);
 			else
+				remove_node(target, o->rchild);
+			o->maintain();
+			int hl = height(o->lchild), hr = height(o->rchild);
+			if (hl - hr == 2)
 			{
-				if (cmp(o->val.first, target->val.first))
-					remove_node(target, o->rchild);
+				if (o->lchild->bval() >= 0)
+					rotate_r(o);
 				else
-					remove_node(target, o->lchild);
+					LR(o);
 			}
-			size_t tmp = std::min(o->lchild ? o->lchild->level : 0, o->rchild ? o->rchild->level : 0) + 1;
-			if (tmp < o->level)
+			else if (hr - hl == 2)
 			{
-				o->level = tmp;
-				if (o->rchild && tmp < o->rchild->level)
-					o->rchild->level = tmp;
+				if (o->rchild->bval() <= 0)
+					rotate_l(o);
+				else
+					RL(o);
 			}
-			skew(o);
-			skew(o->rchild);
-			if (o->rchild)
-				skew(o->rchild->rchild);
-			split(o);
-			split(o->rchild);
+			o->maintain();
 		}
+
+		
 		void delete_tree(node *o)
 		{
 			assert(o);
@@ -542,19 +489,6 @@ namespace sjtu
 			k->lchild = clone_tree(o->lchild);
 			k->rchild = clone_tree(o->rchild);
 			return k;
-		}
-		void build_link(node *o)
-		{
-			if (!o)
-				return;
-			build_link(o->rchild);
-			if (head)
-				head->prev = o;
-			else
-				tail = o;
-			o->next = head;
-			head = o;
-			build_link(o->lchild);
 		}
 		node * find_prev(const Key &key, node *o) const
 		{
@@ -586,33 +520,44 @@ namespace sjtu
 			else
 				return find_next(key, o->rchild);
 		}
-
-		// left h-link -> right rotate
-		void skew(node *&o)
+		void rotate_r(node *&o)
 		{
-			if (!o)
-				return;
-			if (o->lchild && o->lchild->level == o->level)
-			{
-				node *k = o->lchild;
-				o->lchild = k->rchild;
-				k->rchild = o;
-				o = k;
-			}
+			node *k = o->lchild;
+			o->lchild = k->rchild;
+			k->rchild = o;
+			o->maintain();
+			k->maintain();
+			o = k;
 		}
-		// consecutive right h-link -> left rotate
-		void split(node *&o)
+		void rotate_l(node *&o)
+		{
+			node *k = o->rchild;
+			o->rchild = k->lchild;
+			k->lchild = o;
+			o->maintain();
+			k->maintain();
+			o = k;
+		}
+		void LL(node *&o) { rotate_r(o); }
+		void RR(node *&o) { rotate_l(o); }
+		void LR(node *&o) { rotate_l(o->lchild); rotate_r(o); }
+		void RL(node *&o) { rotate_r(o->rchild); rotate_l(o); }
+
+		node * find_head(node *o) const 
 		{
 			if (!o)
-				return;
-			if (o->rchild && o->rchild->rchild && o->level == o->rchild->level && o->level == o->rchild->rchild->level)
-			{
-				node *k = o->rchild;
-				o->rchild = k->lchild;
-				k->lchild = o;
-				o = k;
-				o->level++;
-			}
+				return nullptr;
+			while (o->lchild)
+				o = o->lchild;
+			return o;
+		}
+		node * find_tail(node *o) const
+		{
+			if (!o)
+				return nullptr;
+			while (o->rchild)
+				o = o->rchild;
+			return o;
 		}
 	};
 
