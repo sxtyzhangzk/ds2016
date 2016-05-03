@@ -208,7 +208,7 @@ public:
 	 *     since this container does not allow duplicates.
 	 * The default method of check the equivalence is !(a < b || b > a)
 	 */
-	size_t count() const {}
+	size_t count(const Key &key) const {}
 	/**
 	 * Finds an element with key equivalent to key.
 	 * key value of the element to search for.
@@ -249,15 +249,15 @@ public:
 	/**
 	 * returns the number of buckets.
 	 */
-	size_t bucket_count() const {}
+	size_t bucket_count(const size_t &n) const {}
 	/**
 	 * returns the number of elements in specific bucket.
 	 */
-	size_t bucket_size() const {}
+	size_t bucket_size(const size_t &n) const {}
 	/**
 	 * returns average number of elements per buckets.
 	 */
-	size_t load_factor() const {}
+	double load_factor() const {}
 };
 }
 
