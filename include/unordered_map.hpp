@@ -249,7 +249,7 @@ public:
 	/**
 	 * returns the number of buckets.
 	 */
-	size_t bucket_count(const size_t &n) const {}
+	size_t bucket_count() const {}
 	/**
 	 * returns the number of elements in specific bucket.
 	 */
