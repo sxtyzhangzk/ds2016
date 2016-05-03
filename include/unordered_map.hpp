@@ -45,14 +45,6 @@ public:
 		 */
 		iterator& operator++() {}
 		/**
-		 * TODO iter--
-		 */
-		iterator operator--(int) {}
-		/**
-		 * TODO --iter
-		 */
-		iterator& operator--() {}
-		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
 		value_type& operator*() const {}
@@ -111,14 +103,6 @@ public:
 		 * TODO ++iter
 		 */
 		iterator& operator++() {}
-		/**
-		 * TODO iter--
-		 */
-		iterator operator--(int) {}
-		/**
-		 * TODO --iter
-		 */
-		iterator& operator--() {}
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
