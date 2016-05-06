@@ -42,6 +42,7 @@ public:
 	friend Bint abs(Bint &&x);
 
 	friend bool operator==(const Bint &lhs, const Bint &rhs);
+	friend bool operator!=(const Bint &lhs, const Bint &rhs);
 	friend bool operator<(const Bint &lhs, const Bint &rhs);
 	friend bool operator>(const Bint &lhs, const Bint &rhs);
 	friend bool operator<=(const Bint &lhs, const Bint &rhs);
@@ -295,7 +296,7 @@ bool operator==(const Bint &lhs, const Bint &rhs)
 		return false;
 	}
 	if (lhs.length != rhs.length) {
-		return true;
+		return false;
 	}
 	for (size_t i = 0; i < lhs.length; ++i) {
 		if (lhs.data[i] != rhs.data[i]) {
@@ -303,6 +304,22 @@ bool operator==(const Bint &lhs, const Bint &rhs)
 		}
 	}
 	return true;
+}
+
+bool operator!=(const Bint &lhs, const Bint &rhs)
+{
+	if (lhs.isMinus != rhs.isMinus) {
+		return true;
+	}
+	if (lhs.length != rhs.length) {
+		return true;
+	}
+	for (size_t i = 0; i < lhs.length; ++i) {
+		if (lhs.data[i] != rhs.data[i]) {
+			return true;
+		}
+	}
+	return false;
 }
 
 bool operator<(const Bint &lhs, const Bint &rhs)

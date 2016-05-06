@@ -37,6 +37,9 @@ bool Benchmark()
 		std::string integer = RandomBint();
 		Util::Bint inStdMap = stdBintHashMap[integer];
 		Util::Bint inMyMap = myBintHashMap[integer];
+		if (inStdMap != inMyMap) {
+			return false;
+		}
 	}
 	stdBintHashMap.clear();
 	myBintHashMap.clear();
