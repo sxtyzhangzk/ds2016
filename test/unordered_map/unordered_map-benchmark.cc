@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <chrono>
 #include <ctime>
-//#include "unordered_map.hpp"
+#include "unordered_map.hpp"
 #include "class-bint.hpp"
 
 
@@ -21,12 +21,12 @@ bool Benchmark()
 {
 	std::unordered_map<std::string, Util::Bint> stdBintHashMap;
 	sjtu::unordered_map<std::string, Util::Bint> myBintHashMap;
-	for (int t = 0; t < 10; ++t) {
+	for (int t = 0; t < 100000; ++t) {
 		std::string integer = RandomBint();
 		stdBintHashMap.insert(std::make_pair(integer, Util::Bint(integer)));
 		myBintHashMap.insert(sjtu::pair<std::string, Util::Bint>(integer, Util::Bint(integer)));
 	}
-	for (int t = 0; t < 1000000; ++t) {
+	for (int t = 0; t < 100000; ++t) {
 		std::string integer = RandomBint();
 		Util::Bint inStdMap = stdBintHashMap[integer];
 		Util::Bint inMyMap = myBintHashMap[integer];
@@ -36,7 +36,7 @@ bool Benchmark()
 	}
 	stdBintHashMap.clear();
 	myBintHashMap.clear();
-	for (int t = 0; t < 30000000; ++t) {
+	for (int t = 0; t < 300000; ++t) {
 		std::string integer = RandomBint();
 		stdBintHashMap.insert(std::make_pair(integer, Util::Bint(integer)));
 		myBintHashMap.insert(sjtu::pair<std::string, Util::Bint>(integer, Util::Bint(integer)));
