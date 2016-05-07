@@ -124,7 +124,7 @@ bool StringTest() {
 bool GGDFS(int deep, sjtu :: unordered_map<int, string> my_v, std :: unordered_map<int, string> std_v) {
 	int english = randNum(N);
 	my_v[english] = std_v[english] = randString();
-	if(deep == 5000)
+	if(deep == 2000)
 		return check(my_v, std_v);
 	else
 		return GGDFS(deep + 1, my_v, std_v);

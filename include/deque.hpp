@@ -20,7 +20,7 @@ public:
 	public:
 		/**
 		 * return a new iterator which pointer n-next elements
-		 *   even if there are not enough elements, just return the answer.
+		 *   even if there are not enough elements, the behaviour is **undefined**.
 		 * as well as operator-
 		 */
 		iterator operator+(const int &n) const {
