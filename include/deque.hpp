@@ -61,6 +61,10 @@ public:
 		 */
 		T& operator*() const {}
 		/**
+		 * TODO it->field
+		 */
+		T* operator->() const noexcept {}
+		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
 		bool operator==(const iterator &rhs) const {}
