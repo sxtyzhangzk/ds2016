@@ -21,12 +21,12 @@ bool Benchmark()
 {
 	std::unordered_map<std::string, Util::Bint> stdBintHashMap;
 	sjtu::unordered_map<std::string, Util::Bint> myBintHashMap;
-	for (int t = 0; t < 100000; ++t) {
+	for (int t = 0; t < 10000; ++t) {
 		std::string integer = RandomBint();
 		stdBintHashMap.insert(std::make_pair(integer, Util::Bint(integer)));
 		myBintHashMap.insert(sjtu::pair<std::string, Util::Bint>(integer, Util::Bint(integer)));
 	}
-	for (int t = 0; t < 100000; ++t) {
+	for (int t = 0; t < 10000; ++t) {
 		std::string integer = RandomBint();
 		Util::Bint inStdMap = stdBintHashMap[integer];
 		Util::Bint inMyMap = myBintHashMap[integer];
@@ -36,7 +36,7 @@ bool Benchmark()
 	}
 	stdBintHashMap.clear();
 	myBintHashMap.clear();
-	for (int t = 0; t < 300000; ++t) {
+	for (int t = 0; t < 30000; ++t) {
 		std::string integer = RandomBint();
 		stdBintHashMap.insert(std::make_pair(integer, Util::Bint(integer)));
 		myBintHashMap.insert(sjtu::pair<std::string, Util::Bint>(integer, Util::Bint(integer)));
