@@ -98,11 +98,11 @@ public:
 		/**
 		 * TODO iter++
 		 */
-		iterator operator++(int) {}
+		local_iterator operator++(int) {}
 		/**
 		 * TODO ++iter
 		 */
-		iterator& operator++() {}
+		local_iterator& operator++() {}
 		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
