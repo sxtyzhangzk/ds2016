@@ -7,3 +7,6 @@ list-spfa
 list-benchmark
 map-advance-2
 list-basic
+stack-spfa
+stack-basic
+queue-basic

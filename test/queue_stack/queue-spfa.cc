@@ -4,6 +4,9 @@
 #include <vector>
 #include <queue>
 
+#include "list.hpp"
+#include "queue.hpp"
+
 std::default_random_engine myRandom(1021233);
 
 const int n = 100;
@@ -18,8 +21,8 @@ struct Edge {
 	Edge(const Edge &other) : v(other.v), w(other.w) {}
 };
 
-std::list<Edge> to[limitN];
-std::queue<int> que;
+sjtu::list<Edge> to[limitN];
+sjtu::queue<int> que;
 bool inQueue[limitN] = {0};
 int dist[limitN] = {0};
 
@@ -48,7 +51,7 @@ void Spfa()
 		int u = que.front();
 		inQueue[u] = false;
 		que.pop();
-		for (std::list<Edge>::iterator it = to[u].begin(); it != to[u].end(); ++it) {
+		for (sjtu::list<Edge>::iterator it = to[u].begin(); it != to[u].end(); ++it) {
 			if (dist[u] + it->w < dist[it->v]) {
 				dist[it->v] = dist[u] + it->w;
 				if (!inQueue[it->v]) {

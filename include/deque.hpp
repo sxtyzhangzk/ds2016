@@ -20,7 +20,7 @@ public:
 	public:
 		/**
 		 * return a new iterator which pointer n-next elements
-		 *   even if there are not enough elements, just return the answer.
+		 *   even if there are not enough elements, the behaviour is **undefined**.
 		 * as well as operator-
 		 */
 		iterator operator+(const int &n) const {
@@ -61,6 +61,10 @@ public:
 		 */
 		T& operator*() const {}
 		/**
+		 * TODO it->field
+		 */
+		T* operator->() const noexcept {}
+		/**
 		 * a operator to check whether two iterators are same (pointing to the same memory).
 		 */
 		bool operator==(const iterator &rhs) const {}
@@ -70,6 +74,25 @@ public:
 		 */
 		bool operator!=(const iterator &rhs) const {}
 		bool operator!=(const const_iterator &rhs) const {}
+	};
+	class const_iterator {
+		// it should has similar member method as iterator.
+		//  and it should be able to construct from an iterator.
+		private:
+			// data members.
+		public:
+			const_iterator() {
+				// TODO
+			}
+			const_iterator(const const_iterator &other) {
+				// TODO
+			}
+			const_iterator(const iterator &other) {
+				// TODO
+			}
+			// And other methods in iterator.
+			// And other methods in iterator.
+			// And other methods in iterator.
 	};
 	/**
 	 * TODO Constructors
@@ -128,12 +151,14 @@ public:
 	 * inserts elements at the specified locat on in the container.
 	 * inserts value before pos
 	 * returns an iterator pointing to the inserted value
+	 *     throw if the iterator is invalid or it point to a wrong place.
 	 */
 	iterator insert(iterator pos, const T &value) {}
 	/**
 	 * removes specified element at pos.
 	 * removes the element at pos.
 	 * returns an iterator pointing to the following element, if pos pointing to the last element, end() will be returned.
+	 * throw if the container is empty, the iterator is invalid or it points to a wrong place.
 	 */
 	iterator erase(iterator pos) {}
 	/**
@@ -142,6 +167,7 @@ public:
 	void push_back(const T &value) {}
 	/**
 	 * removes the last element
+	 *     throw when the container is empty.
 	 */
 	void pop_back() {}
 	/**
@@ -150,6 +176,7 @@ public:
 	void push_front(const T &value) {}
 	/**
 	 * removes the first element.
+	 *     throw when the container is empty.
 	 */
 	void pop_front() {}
 };

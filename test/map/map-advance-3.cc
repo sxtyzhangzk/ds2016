@@ -90,16 +90,21 @@ public:
 	
 	IntB & operator =(const IntB &rhs) {
 		if (this == &rhs) return *this;
+		delete this->val;
 		val = new int(*rhs.val);
 		return *this;
 	}
 	
-	bool operator !=(const IntB &rhs)const {
+	bool operator !=(const IntB &rhs) const {
 		return *val != *rhs.val;
 	}
 	
-	bool operator ==(const IntB &rhs)const {
+	bool operator ==(const IntB &rhs) const {
 		return *val == *rhs.val;
+	}
+	
+	~IntB() {
+		delete this->val;
 	}
 };
 
@@ -238,19 +243,19 @@ void tester4() {
 	try{
 		sjtu::map<IntA, IntB, Compare> srcmap;
 		++srcmap.end();
-	} catch (sjtu::invalid_iterator error) {
+	} catch (sjtu::exception error) {
 		try{
 			sjtu::map<IntA, IntB, Compare> srcmap;
 			--srcmap.begin();
-		} catch (sjtu::invalid_iterator error) {
+		} catch (sjtu::exception error) {
 			try{
 				sjtu::map<IntA, IntB, Compare> srcmap;
 				srcmap.end()++;
-			} catch (sjtu::invalid_iterator error) {
+			} catch (sjtu::exception error) {
 				try{
 					sjtu::map<IntA, IntB, Compare> srcmap;
 					srcmap.begin()--;
-				} catch (sjtu::invalid_iterator error) {
+				} catch (sjtu::exception error) {
 					console.pass();
 					return;
 				}
@@ -270,19 +275,19 @@ void tester5() {
 	try{
 		sjtu::map<IntA, IntB, Compare> srcmap;
 		++srcmap.cend();
-	} catch (sjtu::invalid_iterator error) {
+	} catch (sjtu::exception error) {
 		try{
 			sjtu::map<IntA, IntB, Compare> srcmap;
 			--srcmap.cbegin();
-		} catch (sjtu::invalid_iterator error) {
+		} catch (sjtu::exception error) {
 			try{
 				sjtu::map<IntA, IntB, Compare> srcmap;
 				srcmap.cend()++;
-			} catch (sjtu::invalid_iterator error) {
+			} catch (sjtu::exception error) {
 				try{
 					sjtu::map<IntA, IntB, Compare> srcmap;
 					srcmap.cbegin()--;
-				} catch (sjtu::invalid_iterator error) {
+				} catch (sjtu::exception error) {
 					console.pass();
 					return;
 				}

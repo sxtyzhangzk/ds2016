@@ -2,7 +2,10 @@
 #include <random>
 #include <list>
 #include <vector>
-#include <queue>
+#include <stack>
+
+#include "list.hpp"
+#include "stack.hpp"
 
 std::default_random_engine myRandom(1021233);
 
@@ -18,9 +21,9 @@ struct Edge {
 	Edge(const Edge &other) : v(other.v), w(other.w) {}
 };
 
-std::list<Edge> to[limitN];
-std::queue<int> que;
-bool inQueue[limitN] = {0};
+sjtu::list<Edge> to[limitN];
+sjtu::stack<int> que;
+bool inStack[limitN] = {0};
 int dist[limitN] = {0};
 
 void ConstructGraph()
@@ -42,18 +45,18 @@ void Spfa()
 {
 	std::fill(dist, dist + n + 1, ~0U >> 3);
 	dist[1] = 0;
-	inQueue[1] = true;
+	inStack[1] = true;
 	que.push(1);
 	while (!que.empty()) {
-		int u = que.front();
-		inQueue[u] = false;
+		int u = que.top();
+		inStack[u] = false;
 		que.pop();
-		for (std::list<Edge>::iterator it = to[u].begin(); it != to[u].end(); ++it) {
+		for (sjtu::list<Edge>::iterator it = to[u].begin(); it != to[u].end(); ++it) {
 			if (dist[u] + it->w < dist[it->v]) {
 				dist[it->v] = dist[u] + it->w;
-				if (!inQueue[it->v]) {
+				if (!inStack[it->v]) {
 					que.push(it->v);
-					inQueue[it->v] = true;
+					inStack[it->v] = true;
 				}
 			}
 		}
