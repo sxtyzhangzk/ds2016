@@ -230,6 +230,14 @@ namespace sjtu
 				return insert(pair<Key, T>(key, T())).first->second;
 			return o->val.second;
 		}
+
+		const T & operator[](const Key &key) const
+		{
+			node *o = find_node(key, root);
+			if (!o)
+				throw index_out_of_bound();
+			return o->val.second;
+		}
 		/**
 			* return a iterator to the beginning
 			*/
