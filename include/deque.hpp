@@ -815,10 +815,22 @@ protected:
 		//std::cerr << hit << " / " << total << std::endl;
 		lastq->query = pos;
 
-		block *blk = bhead;
+		block *blk;
 		size_t idx = 0;
-		while (idx + blk->elecount <= pos)
-			idx += blk->elecount, blk = blk->next;
+		
+		if (pos <= ecount / 2)
+		{
+			blk = bhead;
+			while (idx + blk->elecount <= pos)
+				idx += blk->elecount, blk = blk->next;
+		}
+		else
+		{
+			blk = btail;
+			idx = ecount - btail->elecount;
+			while (idx > pos)
+				blk = blk->prev, idx -= blk->elecount;
+		}
 		if (pos - idx <= idx + blk->elecount - 1 - pos)
 		{
 			node *o = blk->head;
@@ -840,14 +852,14 @@ protected:
 
 	void update_bsize()
 	{
-		if ((unsigned long long)blocksize * blocksize > 4 * ecount && blocksize >= 2 * MinBlockSize)
+		if ((unsigned long long)blocksize * blocksize > ecount && blocksize >= 2 * MinBlockSize)
 		{
 			blocksize /= 2;
 			for (block *i = bhead; i; i = i->next)
 				if (i->elecount > 2 * blocksize)
 					split(i);
 		}
-		else if ((unsigned long long)blocksize * blocksize < ecount / 4)
+		else if ((unsigned long long)blocksize * blocksize < ecount / 16)
 		{
 			blocksize *= 2;
 			block *i = bhead;
