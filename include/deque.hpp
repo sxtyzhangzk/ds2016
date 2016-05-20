@@ -38,6 +38,8 @@ public:
 		}
 		int operator-(const const_iterator &rhs) const
 		{
+			if (deq != rhs.deq)
+				throw invalid_iterator();
 			return pos - rhs.pos;
 		}
 		const_iterator & operator+=(int n)
@@ -89,6 +91,8 @@ public:
 
 		const T & operator*() const
 		{
+			if (!now)
+				throw runtime_error();
 			return now->val;
 		}
 		const T * operator->() const noexcept
@@ -142,7 +146,14 @@ public:
 				while (cur_block && offset >= cur_block->elecount)
 					offset -= cur_block->elecount, cur_block = cur_block->next;
 				if (!cur_block)
+				{
+					if (offset == 0)
+					{
+						now = nullptr;
+						return;
+					}
 					throw runtime_error();
+				}
 				if (offset <= cur_block->elecount - offset - 1)
 					now = cur_block->head;
 				else
@@ -189,6 +200,7 @@ public:
 	{
 		friend class deque;
 	public:
+		iterator() = default;
 		/**
 			* return a new iterator which pointer n-next elements
 			*   even if there are not enough elements, the behaviour is **undefined**.
@@ -208,6 +220,8 @@ public:
 		}
 		int operator-(const iterator &rhs) const
 		{
+			if (deq != rhs.deq)
+				throw invalid_iterator();
 			return pos - rhs.pos;
 		}
 
@@ -246,6 +260,8 @@ public:
 
 		T & operator*() const
 		{
+			if (!now)
+				throw runtime_error();
 			return now->val;
 		}
 		T* operator->() const noexcept
@@ -422,6 +438,9 @@ public:
 		++ecount;
 		update_bsize();
 
+		if (tmp->parent->elecount >= 2 * blocksize)
+			split(tmp->parent);
+
 		return iterator(this, tmp, pos.pos);
 	}
 	/**
@@ -450,33 +469,34 @@ public:
 		assert(o->prev && o->next);
 		o->prev->next = o->next;
 		o->next->prev = o->prev;
+		block *parent = o->parent;
 
-		if (o->parent->elecount > 1)
+		if (parent->elecount > 1)
 		{
 			if (o->type & Thead)
 			{
-				o->parent->head = o->next;
+				parent->head = o->next;
 				o->next->type |= Thead;
 			}
 			else if (o->type & Ttail)
 			{
-				o->parent->tail = o->prev;
+				parent->tail = o->prev;
 				o->prev->type |= Ttail;
 			}
-			--o->parent->elecount;
-			if (o->parent->prev && o->parent->prev->elecount + o->parent->elecount <= blocksize)
-				merge(o->parent->prev);
-			if (o->parent->next && o->parent->next->elecount + o->parent->elecount <= blocksize)
-				merge(o->parent);
+			--parent->elecount;
+			if (parent->prev && parent->prev->elecount + parent->elecount <= blocksize)
+				parent = merge(parent->prev);
+			if (parent->next && parent->next->elecount + parent->elecount <= blocksize)
+				parent = merge(parent);
 		}
 		else
 		{
-			assert(o->parent->prev && o->parent->next);
-			o->parent->prev->next = o->parent->next;
-			o->parent->next->prev = o->parent->prev;
-			if (o->parent->prev->elecount + o->parent->next->elecount <= blocksize)
-				merge(o->parent->prev);
-			delete o->parent;
+			assert(parent->prev && parent->next);
+			parent->prev->next = parent->next;
+			parent->next->prev = parent->prev;
+			if (parent->prev->elecount + parent->next->elecount <= blocksize)
+				merge(parent->prev);
+			delete parent;
 		}
 		node *tmp = o->next;
 		delete o;
@@ -554,6 +574,11 @@ public:
 			delete btail->tail;
 			block *tmp = btail;
 			btail = btail->prev;
+			if (!btail)
+			{
+				assert(ecount == 1);
+				bhead = nullptr;
+			}
 			delete tmp;
 		}
 		--ecount;
@@ -626,6 +651,11 @@ public:
 			delete bhead->head;
 			block *tmp = bhead;
 			bhead = bhead->next;
+			if (!bhead)
+			{
+				assert(ecount == 1);
+				btail = nullptr;
+			}
 			delete tmp;
 		}
 		--ecount;
@@ -651,12 +681,11 @@ protected:
 	};
 	struct block
 	{
-		size_t *refcount;
 		size_t elecount;
 		node *head, *tail;
 		block *next, *prev;
 
-		block() : refcount(new size_t(1)), elecount(0), head(nullptr), tail(nullptr), next(nullptr), prev(nullptr) {}
+		block() : elecount(0), head(nullptr), tail(nullptr), next(nullptr), prev(nullptr) {}
 	};
 
 	size_t ecount;
@@ -729,6 +758,7 @@ protected:
 			assert(o == btail);
 			btail = k;
 		}
+		o->next = k;
 		k->elecount = o->elecount / 2;
 		o->elecount -= k->elecount;
 	}
