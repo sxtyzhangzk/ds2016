@@ -132,10 +132,21 @@ public:
 				now = deq->find_node(pos);
 				return;
 			}
+			//std::cerr << offset << " ";
 			pos += offset;
+			if (pos == deq->ecount)
+			{
+				now = nullptr;
+				return;
+			}
+			if (offset > IterThreshold || -offset < IterThreshold)
+			{
+				now = deq->find_node(pos);
+				return;
+			}
 			if (offset > 0)
 			{
-				for (; offset > 0 && now && !(now->type & Ttail); offset--)
+				for (; now && !(now->type & Ttail) && offset > 0; offset--)
 					now = now->next;
 				if (offset == 0)
 					return;
@@ -178,6 +189,7 @@ public:
 				else
 					now = cur_block->head, offset += cur_block->elecount - 1;
 			}
+			//std::cerr << offset << std::endl;
 			if (offset > 0)
 			{
 				for (; offset > 0 && now; offset--)
@@ -220,19 +232,19 @@ public:
 		}
 		int operator-(const iterator &rhs) const
 		{
-			if (deq != rhs.deq)
+			if (this->deq != rhs.deq)
 				throw invalid_iterator();
-			return pos - rhs.pos;
+			return this->pos - rhs.pos;
 		}
 
 		iterator & operator+=(int n)
 		{
-			move(n);
+			this->move(n);
 			return *this;
 		}
 		iterator & operator-=(int n)
 		{
-			move(-n);
+			this->move(-n);
 			return *this;
 		}
 		iterator operator++(int)
@@ -260,13 +272,13 @@ public:
 
 		T & operator*() const
 		{
-			if (!now)
+			if (!this->now)
 				throw runtime_error();
-			return now->val;
+			return this->now->val;
 		}
 		T* operator->() const noexcept
 		{
-			return &now->val;
+			return &this->now->val;
 		}
 
 	protected:
@@ -275,14 +287,15 @@ public:
 		{}
 	};
 
-	deque() : ecount(0), blocksize(MinBlockSize), bhead(nullptr), btail(nullptr) {}
-	deque(const deque &other) : ecount(0), bhead(nullptr), btail(nullptr)
+	deque() : ecount(0), blocksize(MinBlockSize), bhead(nullptr), btail(nullptr), lastq(new Tlastquery) {}
+	deque(const deque &other) : ecount(0), bhead(nullptr), btail(nullptr), lastq(new Tlastquery)
 	{
 		clone(other);
 	}
 	~deque()
 	{
 		clear();
+		delete lastq;
 	}
 
 	deque &operator=(const deque &other)
@@ -397,6 +410,7 @@ public:
 		}
 		ecount = 0;
 		bhead = btail = nullptr;
+		lastq->ans = nullptr;
 	}
 	/**
 		* inserts elements at the specified locat on in the container.
@@ -440,6 +454,8 @@ public:
 
 		if (tmp->parent->elecount >= 2 * blocksize)
 			split(tmp->parent);
+
+		lastq->ans = nullptr;
 
 		return iterator(this, tmp, pos.pos);
 	}
@@ -502,6 +518,7 @@ public:
 		delete o;
 		--ecount;
 		update_bsize();
+		lastq->ans = nullptr;
 		return iterator(this, tmp, pos.pos);
 	}
 	/**
@@ -583,6 +600,7 @@ public:
 		}
 		--ecount;
 		update_bsize();
+		lastq->ans = nullptr;
 	}
 	/**
 		* inserts an element to the beginning.
@@ -620,6 +638,7 @@ public:
 		}
 		++ecount;
 		update_bsize();
+		lastq->ans = nullptr;
 	}
 	/**
 		* removes the first element.
@@ -660,6 +679,7 @@ public:
 		}
 		--ecount;
 		update_bsize();
+		lastq->ans = nullptr;
 	}
 
 protected:
@@ -668,6 +688,7 @@ protected:
 	static const int Ttail = 2;
 
 	static const size_t MinBlockSize = 32;
+	static const size_t IterThreshold = 100;
 
 	struct node
 	{
@@ -691,6 +712,14 @@ protected:
 	size_t ecount;
 	size_t blocksize;
 	block *bhead, *btail;
+
+	struct Tlastquery
+	{
+		size_t query;
+		node *ans;
+		Tlastquery() : ans(nullptr) {}
+	};
+	Tlastquery *lastq;
 
 protected:
 	block * merge(block *o)
@@ -769,6 +798,23 @@ protected:
 			throw container_is_empty();
 		if (pos >= ecount || pos < 0)
 			throw index_out_of_bound();
+
+		//static int total = 0, hit = 0;
+		//total++;
+		if (lastq->ans)
+		{
+			//hit++;
+			if (pos == lastq->query + 1)
+				return lastq->query = pos, lastq->ans = lastq->ans->next;
+			else if (pos == lastq->query - 1)
+				return lastq->query = pos, lastq->ans = lastq->ans->prev;
+			else if (pos == lastq->query)
+				return lastq->ans;
+			//hit--;
+		}
+		//std::cerr << hit << " / " << total << std::endl;
+		lastq->query = pos;
+
 		block *blk = bhead;
 		size_t idx = 0;
 		while (idx + blk->elecount <= pos)
@@ -778,6 +824,7 @@ protected:
 			node *o = blk->head;
 			while (idx < pos)
 				o = o->next, ++idx;
+			lastq->ans = o;
 			return o;
 		}
 		else
@@ -786,6 +833,7 @@ protected:
 			idx += blk->elecount - 1;
 			while (idx > pos)
 				o = o->prev, --idx;
+			lastq->ans = o;
 			return o;
 		}
 	}
