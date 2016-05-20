@@ -433,7 +433,7 @@ public:
 			return iterator(this, bhead->head, 0);
 		}
 		node *o = pos.now;
-		assert(o->prev);
+		//assert(o->prev);
 		node *tmp = new node(value, o->parent, Tnormal);
 
 		o->prev->next = tmp;
@@ -482,7 +482,7 @@ public:
 			return begin();
 		}
 		node *o = pos.now;
-		assert(o->prev && o->next);
+		//assert(o->prev && o->next);
 		o->prev->next = o->next;
 		o->next->prev = o->prev;
 		block *parent = o->parent;
@@ -507,7 +507,7 @@ public:
 		}
 		else
 		{
-			assert(parent->prev && parent->next);
+			//assert(parent->prev && parent->next);
 			parent->prev->next = parent->next;
 			parent->next->prev = parent->prev;
 			if (parent->prev->elecount + parent->next->elecount <= blocksize)
@@ -528,8 +528,8 @@ public:
 	{
 		if (!btail)
 		{
-			assert(!bhead);
-			assert(ecount == 0);
+			//assert(!bhead);
+			//assert(ecount == 0);
 			btail = bhead = new block();
 			bhead->head = bhead->tail = new node(value, btail, Thead | Ttail);
 			bhead->elecount = 1;
@@ -569,8 +569,8 @@ public:
 		node *k = btail->tail->prev;
 		if (btail->elecount > 1)
 		{
-			assert(k);
-			assert(k->parent == btail);
+			//assert(k);
+			//assert(k->parent == btail);
 			k->next = nullptr;
 			k->type |= Ttail;
 			delete btail->tail;
@@ -585,7 +585,7 @@ public:
 			if (k)
 			{
 				k->next = nullptr;
-				assert(btail->prev);
+				//assert(btail->prev);
 				btail->prev->next = nullptr;
 			}
 			delete btail->tail;
@@ -593,7 +593,7 @@ public:
 			btail = btail->prev;
 			if (!btail)
 			{
-				assert(ecount == 1);
+				//assert(ecount == 1);
 				bhead = nullptr;
 			}
 			delete tmp;
@@ -609,8 +609,8 @@ public:
 	{
 		if (!bhead)
 		{
-			assert(!btail);
-			assert(ecount == 0);
+			//assert(!btail);
+			//assert(ecount == 0);
 			bhead = btail = new block();
 			bhead->head = bhead->tail = new node(value, bhead, Thead | Ttail);
 			bhead->elecount = 1;
@@ -651,8 +651,8 @@ public:
 		node *k = bhead->head->next;
 		if (bhead->elecount > 1)
 		{
-			assert(k);
-			assert(k->parent == bhead);
+			//assert(k);
+			//assert(k->parent == bhead);
 			k->prev = nullptr;
 			k->type |= Thead;
 			delete bhead->head;
@@ -664,7 +664,7 @@ public:
 			if (k)
 			{
 				k->prev = nullptr;
-				assert(bhead->next);
+				//assert(bhead->next);
 				bhead->next->prev = nullptr;
 			}
 			delete bhead->head;
@@ -672,7 +672,7 @@ public:
 			bhead = bhead->next;
 			if (!bhead)
 			{
-				assert(ecount == 1);
+				//assert(ecount == 1);
 				btail = nullptr;
 			}
 			delete tmp;
@@ -725,7 +725,7 @@ protected:
 	block * merge(block *o)
 	{
 		block *k = o->next;
-		assert(k);
+		//assert(k);
 		o->tail->type &= ~Ttail;
 		k->head->type &= ~Thead;
 		if (o->elecount >= k->elecount)
@@ -738,7 +738,7 @@ protected:
 				k->next->prev = o;
 			else
 			{
-				assert(k == btail);
+				//assert(k == btail);
 				btail = o;
 			}
 			o->elecount += k->elecount;
@@ -747,7 +747,7 @@ protected:
 		}
 		else
 		{
-			assert(o->tail->next == k->head);
+			//assert(o->tail->next == k->head);
 			k->head = o->head;
 			for (node *i = o->head, *j = o->tail->next; i != j; i = i->next)
 				i->parent = k;
@@ -756,7 +756,7 @@ protected:
 				o->prev->next = k;
 			else
 			{
-				assert(o == bhead);
+				//assert(o == bhead);
 				bhead = k;
 			}
 			k->elecount += o->elecount;
@@ -771,7 +771,7 @@ protected:
 		block *k = new block();
 		for (size_t i = 0; i < o->elecount / 2; i++)
 			mid->parent = k, mid = mid->prev;
-		assert(mid->next && mid->next->parent == k && mid->parent == o);
+		//assert(mid->next && mid->next->parent == k && mid->parent == o);
 		k->head = mid->next;
 		k->tail = o->tail;
 		o->tail = mid;
@@ -784,7 +784,7 @@ protected:
 			o->next->prev = k;
 		else
 		{
-			assert(o == btail);
+			//assert(o == btail);
 			btail = k;
 		}
 		o->next = k;
@@ -874,7 +874,7 @@ protected:
 
 	void clone(const deque &other)
 	{
-		assert(empty());
+		//assert(empty());
 		if (other.empty())
 			return;
 		blocksize = other.blocksize;
